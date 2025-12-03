@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nancy Pelosi - Profile | Pelosi Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">Pelosi Tracker</div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/#holdings">Holdings</a>
+                <a href="/#trades">Trades</a>
+                <a href="#" onclick="openAboutModal(); return false;">About</a>
+            </div>
+            <div class="nav-social">
+                <a href="https://x.com/home" target="_blank" class="social-icon" title="Follow on X">
+                    <img src="https://static.wixstatic.com/media/e2da02_75efd7a093fd4113a9662b914a541af9~mv2.jpg" alt="X/Twitter">
+                </a>
+                <a href="https://pump.fun" target="_blank" class="social-icon" title="Pump.fun">
+                    <img src="https://static.wixstatic.com/media/e2da02_248e6293fa024f6e9dd4130271bb14c3~mv2.png" alt="Pump.fun">
+                </a>
+                <button class="ca-button" onclick="copyCaToClipboard()" title="Click to copy Contract Address">
+                    <span class="ca-label">CA:</span>
+                    <span class="ca-value">TBA</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Header -->
+    <section class="profile-section">
+        <div class="container">
+            <div class="profile-card profile-card-small" style="background: rgb(20, 20, 40) !important; max-width: 650px !important; width: 650px !important; padding: 2rem !important; margin: 0 auto !important;">
+                <div class="profile-header">
+                    <div class="profile-image">
+                        <img src="https://static.wixstatic.com/media/e2da02_0a03833456ad46e6945df293c9e6a468~mv2.png" alt="Nancy Pelosi">
+                    </div>
+                </div>
+                
+                <div class="profile-card-top">
+                    <div class="profile-info-top">
+                        <h2>Nancy Pelosi</h2>
+                        <p class="profile-title">Representative, California</p>
+                        <div class="profile-badges">
+                            <span class="badge badge-blue">Democrat</span>
+                            <span class="badge badge-gray">District 11</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-stats-grid">
+                    <div class="profile-stat">
+                        <div class="profile-stat-label">Total Value</div>
+                        <div class="profile-stat-value" id="total-value-display">$168.00M</div>
+                    </div>
+                    <div class="profile-stat">
+                        <div class="profile-stat-label">Performance</div>
+                        <div class="profile-stat-value positive" id="performance-badge-display">+38.0%</div>
+                    </div>
+                    <div class="profile-stat">
+                        <div class="profile-stat-label">Holdings</div>
+                        <div class="profile-stat-value">11</div>
+                    </div>
+                    <div class="profile-stat">
+                        <div class="profile-stat-label">Updated</div>
+                        <div class="profile-stat-value small">Today</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Announcements -->
+    <section class="announcements-section">
+        <div class="container">
+            <div class="announcement-card info">
+                <div class="announcement-icon">ℹ️</div>
+                <div class="announcement-content">
+                    <h3>Retirement Announcement</h3>
+                    <p>Nancy Pelosi has officially announced her retirement from Congress. However, her term runs until <strong>January 2027</strong>, and we'll continue tracking her portfolio activity until then. For now, nothing changes — all portfolio data and trade tracking remains active and up to date.</p>
+                </div>
+            </div>
+            <div class="announcement-card warning">
+                <div class="announcement-icon">⚠️</div>
+                <div class="announcement-content">
+                    <h3>Portfolio Calculation Disclaimer</h3>
+                    <p>These calculations are estimations based on available data recorded from 2020 onwards. We aim to improve accuracy over time but do not guarantee the precision of these figures. Actual portfolio values may differ from our calculations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <section class="profile-content-section">
+        <div class="container">
+            <div class="profile-grid">
+                <!-- Left Column -->
+                <div class="profile-left-column">
+                    <!-- Politician Info -->
+                    <div class="info-card">
+                        <h3>Politician Info</h3>
+                        <div class="info-item">
+                            <span class="info-label">Role:</span>
+                            <span class="info-value">Representative</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Years in Office:</span>
+                            <span class="info-value">1987 - Present</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Age:</span>
+                            <span class="info-value">85 years</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Committees:</span>
+                            <a href="https://clerk.house.gov/members/P000197" class="info-link" target="_blank">View Committees</a>
+                        </div>
+                    </div>
+
+                    <!-- Filing Statistics -->
+                    <div class="info-card">
+                        <h3>Filing Statistics</h3>
+                        <div class="info-item">
+                            <span class="info-label">Avg. Reporting Time:</span>
+                            <span class="info-value">23 days</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Avg. Filing Frequency:</span>
+                            <span class="info-value">55 days</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Time Since Last Filing:</span>
+                            <span class="info-value">38 days</span>
+                        </div>
+                    </div>
+
+                    <!-- Biography -->
+                    <div class="info-card">
+                        <h3>Biography</h3>
+                        <p>Nancy Pelosi is a Representative from California. She served as the 52nd Speaker of the United States House of Representatives from 2007 to 2011 and again from 2019 to 2023, making her the first woman to hold the office.</p>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="profile-right-column">
+                    <!-- Portfolio Overview -->
+                    <div class="portfolio-overview-card">
+                        <div class="card-header">
+                            <h2>Portfolio Overview</h2>
+                            <button class="btn-secondary">Summary</button>
+                        </div>
+                        <div class="portfolio-value">
+                            <div class="value-label">Total Value</div>
+                            <div class="value-amount" id="total-value-display">US$167,951,211</div>
+                        </div>
+                        <div class="monthly-change">
+                            <span class="change-label">Monthly Change</span>
+                            <span class="change-value negative" id="monthly-change">↓ -7.8%</span>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Performance -->
+                    <div class="portfolio-performance-card">
+                        <div class="card-header">
+                            <h2>Portfolio Performance</h2>
+                            <div class="performance-badge positive" id="performance-badge">↑ 47.4%</div>
+                        </div>
+                        <div class="time-range-selector">
+                            <button class="time-btn" data-range="1M">1M</button>
+                            <button class="time-btn" data-range="3M">3M</button>
+                            <button class="time-btn" data-range="6M">6M</button>
+                            <button class="time-btn" data-range="1Y">1Y</button>
+                            <button class="time-btn active" data-range="all">All</button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="performanceChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Top Holdings -->
+                    <div class="holdings-card">
+                        <h2>Top Holdings</h2>
+                        <div class="holdings-content">
+                            <div class="donut-chart-container">
+                                <canvas id="holdingsChart"></canvas>
+                                <div class="chart-center">
+                                    <div class="chart-center-label">Portfolio value</div>
+                                    <div class="chart-center-value" id="portfolio-value-center">$168.0M</div>
+                                </div>
+                            </div>
+                            <div class="holdings-list" id="holdings-list">
+                                <!-- Will be populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Trades -->
+                    <div class="trades-card">
+                        <h2>Recent Trades</h2>
+                        <div class="trades-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Ticker</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent-trades-body">
+                                    <!-- Will be populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Sector Allocation -->
+                    <div class="sector-card">
+                        <div class="card-header">
+                            <h2>Sector Allocation</h2>
+                            <button class="btn-secondary">Asset Distribution</button>
+                        </div>
+                        <div class="sector-list" id="sector-list">
+                            <!-- Will be populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Modal -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-overlay" onclick="closeAboutModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeAboutModal()">&times;</button>
+            <h2>About Nancy Pelosi</h2>
+            
+            <div class="modal-section">
+                <h3>📋 Background</h3>
+                <p>Nancy Patricia Pelosi (born March 26, 1940) is an American politician who served as the 52nd Speaker of the United States House of Representatives from 2007 to 2011 and again from 2019 to 2023. She is the first woman to hold the position of Speaker of the House.</p>
+                <p>Pelosi has represented California's 11th congressional district (now the 12th) since 1987, making her one of the longest-serving members of Congress. She has been a central figure in Democratic Party politics for decades and played a key role in the passage of major legislation including the Affordable Care Act.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>📊 Trading Record & Performance</h3>
+                <p><strong>Extraordinary Returns:</strong> According to the <a href="https://nypost.com/2025/11/08/us-news/nancy-pelosi-made-130-million-in-stock-profits-in-her-37-years-in-congress-a-profit-of-16930/" target="_blank" style="color: #3b82f6; text-decoration: underline;">New York Post</a>, Nancy Pelosi and her husband made at least <span class="highlight-green">$130 million in stock profits</span> over her 37 years in Congress — a staggering return of <span class="highlight-green">16,930%</span>.</p>
+                
+                <p>Their portfolio grew from $610K-$785K in 1987 to an estimated <span class="highlight-blue">$133.7 million</span> today, representing an average annual return of 14.5% — significantly outperforming the S&P 500, NASDAQ, and Dow Jones.</p>
+
+                <p><strong>Notable Trading Characteristics:</strong></p>
+                <ul>
+                    <li><strong>Tech Giants:</strong> Major positions in NVIDIA, Apple, Google, Microsoft, Palo Alto Networks, Salesforce</li>
+                    <li><strong>Options Mastery:</strong> Prolific use of call options on big tech stocks with high conviction trades</li>
+                    <li><strong>2024 Performance:</strong> 54% return, more than double the S&P 500's 25% gain and beating every large hedge fund</li>
+                </ul>
+
+                <p><strong>Cultural Impact:</strong> Her trading is so famous that Congressional trading ban bills have been named after her, and ETFs like "NANC" attempt to copy her trades. The couple's net worth is estimated at <span class="highlight-blue">$280 million</span> today, up from around $3 million in 1987.</p>
+
+                <p class="disclaimer">⚠️ <strong>Source:</strong> Data from NY Post reporting based on congressional financial disclosures and Quiver Quantitative analysis. This is for educational purposes only - not financial or investment advice.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>🔗 Retirement Announcement</h3>
+                <p>On November 29, 2024, Nancy Pelosi announced her retirement from congressional leadership. However, her term continues until <strong>January 2027</strong>, and we'll continue tracking her portfolio activity until then.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+    <script>
+        function openAboutModal() {
+            document.getElementById('aboutModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAboutModal() {
+            document.getElementById('aboutModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeAboutModal();
+        });
+
+        // Copy CA to clipboard
+        function copyCaToClipboard() {
+            const ca = 'TBA'; // Replace with actual contract address when available
+            navigator.clipboard.writeText(ca).then(function() {
+                // Show success feedback
+                const btn = document.querySelector('.ca-button');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<span style="color: #10b981;">✓ Copied!</span>';
+                btn.style.transform = 'scale(1.1)';
+                
+                setTimeout(function() {
+                    btn.innerHTML = originalText;
+                    btn.style.transform = 'scale(1)';
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy to clipboard');
+            });
+        }
+    </script>
+</body>
+</html>
+
