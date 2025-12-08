@@ -501,6 +501,43 @@ function shareTradeOnTwitter(ticker, action, date, amount) {
     window.open(twitterUrl, '_blank', 'width=550,height=420');
 }
 
+// Load trade predictions
+async function loadTradePredictions() {
+    try {
+        const response = await fetch(`${API_BASE}/trade-predictions`);
+        const data = await response.json();
+        
+        const grid = document.getElementById('predictions-grid');
+        if (!grid) return;
+        
+        grid.innerHTML = data.predictions.map((pred, index) => `
+            <div class="prediction-item" onclick="window.location.href='/stock/${pred.ticker}'">
+                <div class="prediction-rank">#${index + 1}</div>
+                <div class="prediction-ticker">${pred.ticker}</div>
+                <div class="prediction-company">${pred.company_name}</div>
+                <div class="prediction-confidence">
+                    <div class="confidence-bar-container">
+                        <div class="confidence-bar" style="width: ${pred.confidence}%"></div>
+                    </div>
+                    <div class="confidence-percent">${pred.confidence}%</div>
+                </div>
+                <div class="prediction-reasoning">${pred.reasoning}</div>
+                <div class="prediction-sector">${pred.sector}</div>
+            </div>
+        `).join('');
+        
+        // Animate confidence bars
+        setTimeout(() => {
+            document.querySelectorAll('.confidence-bar').forEach(bar => {
+                bar.style.width = bar.style.width;
+            });
+        }, 100);
+        
+    } catch (error) {
+        console.error('Error loading predictions:', error);
+    }
+}
+
 // Time range selector
 document.addEventListener('DOMContentLoaded', function() {
     fetchPortfolioData();
@@ -508,6 +545,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initPerformanceChart();
     loadNewQuote();
     loadSP500Comparison();
+    loadTradePredictions();
 
     // Time range buttons - these are the 1M, 3M, 6M, 1Y, All buttons
     const timeBtns = document.querySelectorAll('.time-btn');
