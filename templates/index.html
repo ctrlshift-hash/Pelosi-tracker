@@ -72,6 +72,27 @@
         </div>
     </section>
 
+    <!-- Nancy Says Quote -->
+    <section class="nancy-says-section">
+        <div class="container">
+            <div class="nancy-says-box" id="nancy-says-box">
+                <div class="nancy-says-header">
+                    <span class="nancy-says-icon">💬</span>
+                    <span class="nancy-says-title">Nancy Says</span>
+                </div>
+                <div class="nancy-says-quote" id="nancy-quote-text">
+                    Loading quote...
+                </div>
+                <div class="nancy-says-source" id="nancy-quote-source">
+                    — Nancy Pelosi
+                </div>
+                <button class="nancy-says-refresh" onclick="loadNewQuote()">
+                    🔄 New Quote
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- Profile Section -->
     <section class="profile-section">
         <div class="container">
@@ -251,6 +272,31 @@
                 alert('Failed to copy to clipboard');
             });
         }
+
+        // Load Nancy Says quote
+        async function loadNewQuote() {
+            try {
+                const response = await fetch('/api/nancy-quote');
+                const quote = await response.json();
+                
+                document.getElementById('nancy-quote-text').textContent = `"${quote.quote}"`;
+                document.getElementById('nancy-quote-source').textContent = `— ${quote.source}`;
+                
+                // Add animation
+                const box = document.getElementById('nancy-says-box');
+                box.style.animation = 'none';
+                setTimeout(() => {
+                    box.style.animation = 'fadeInUp 0.6s ease';
+                }, 10);
+            } catch (error) {
+                console.error('Error loading quote:', error);
+            }
+        }
+
+        // Load quote on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadNewQuote();
+        });
     </script>
 </body>
 </html>

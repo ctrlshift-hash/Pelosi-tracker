@@ -56,15 +56,36 @@
 
                 <div class="profile-stats-grid">
                     <div class="profile-stat">
-                        <div class="profile-stat-label">Total Value</div>
+                        <div class="profile-stat-label">Total Value
+                            <span class="tooltip">
+                                <span class="tooltip-icon">?</span>
+                                <span class="tooltip-text">
+                                    Estimated total portfolio value based on disclosed holdings and current market prices. Congressional forms only require <strong>ranges</strong>, so this is calculated using midpoint estimates.
+                                </span>
+                            </span>
+                        </div>
                         <div class="profile-stat-value" id="total-value-display">$168.00M</div>
                     </div>
                     <div class="profile-stat">
-                        <div class="profile-stat-label">Performance</div>
+                        <div class="profile-stat-label">Performance
+                            <span class="tooltip">
+                                <span class="tooltip-icon">?</span>
+                                <span class="tooltip-text">
+                                    <strong>Total return</strong> since May 2022. This represents the percentage increase in portfolio value from $95M to $168M, significantly outperforming the S&P 500's +49.5% return over the same period.
+                                </span>
+                            </span>
+                        </div>
                         <div class="profile-stat-value positive" id="performance-badge-display">+38.0%</div>
                     </div>
                     <div class="profile-stat">
-                        <div class="profile-stat-label">Holdings</div>
+                        <div class="profile-stat-label">Holdings
+                            <span class="tooltip">
+                                <span class="tooltip-icon">?</span>
+                                <span class="tooltip-text">
+                                    Number of unique stock positions currently held in the portfolio. Heavily weighted toward <strong>technology stocks</strong> like NVIDIA, Google, and Broadcom.
+                                </span>
+                            </span>
+                        </div>
                         <div class="profile-stat-value">11</div>
                     </div>
                     <div class="profile-stat">
@@ -72,6 +93,27 @@
                         <div class="profile-stat-value small">Today</div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nancy Says Quote -->
+    <section class="nancy-says-section">
+        <div class="container">
+            <div class="nancy-says-box" id="nancy-says-box">
+                <div class="nancy-says-header">
+                    <span class="nancy-says-icon">💬</span>
+                    <span class="nancy-says-title">Nancy Says</span>
+                </div>
+                <div class="nancy-says-quote" id="nancy-quote-text">
+                    Loading quote...
+                </div>
+                <div class="nancy-says-source" id="nancy-quote-source">
+                    — Nancy Pelosi
+                </div>
+                <button class="nancy-says-refresh" onclick="loadNewQuote()">
+                    🔄 New Quote
+                </button>
             </div>
         </div>
     </section>
@@ -127,15 +169,36 @@
                     <div class="info-card">
                         <h3>Filing Statistics</h3>
                         <div class="info-item">
-                            <span class="info-label">Avg. Reporting Time:</span>
+                            <span class="info-label">Avg. Reporting Time:
+                                <span class="tooltip">
+                                    <span class="tooltip-icon">?</span>
+                                    <span class="tooltip-text">
+                                        <strong>STOCK Act Requirement:</strong> Members of Congress must report trades within <strong>45 days</strong> of the transaction date. Nancy Pelosi averages 23 days, which is compliant with federal law.
+                                    </span>
+                                </span>
+                            </span>
                             <span class="info-value">23 days</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Avg. Filing Frequency:</span>
+                            <span class="info-label">Avg. Filing Frequency:
+                                <span class="tooltip">
+                                    <span class="tooltip-icon">?</span>
+                                    <span class="tooltip-text">
+                                        How often trades are filed on average. More frequent filings indicate active trading activity in the portfolio.
+                                    </span>
+                                </span>
+                            </span>
                             <span class="info-value">55 days</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Time Since Last Filing:</span>
+                            <span class="info-label">Time Since Last Filing:
+                                <span class="tooltip">
+                                    <span class="tooltip-icon">?</span>
+                                    <span class="tooltip-text">
+                                        Number of days since the most recent trade disclosure was filed. Filings are required within 45 days per the STOCK Act of 2012.
+                                    </span>
+                                </span>
+                            </span>
                             <span class="info-value">38 days</span>
                         </div>
                     </div>
@@ -183,6 +246,37 @@
                         </div>
                     </div>
 
+                    <!-- S&P 500 Comparison -->
+                    <div class="sp500-comparison-card">
+                        <div class="sp500-header">
+                            <h3>📊 Performance vs S&P 500</h3>
+                        </div>
+                        <div class="sp500-stats">
+                            <div class="sp500-stat-item">
+                                <div class="sp500-stat-label">Nancy Pelosi Return</div>
+                                <div class="sp500-stat-value positive" id="pelosi-return">+76.8%</div>
+                            </div>
+                            <div class="sp500-stat-item">
+                                <div class="sp500-stat-label">S&P 500 Return</div>
+                                <div class="sp500-stat-value positive" id="sp500-return">+49.5%</div>
+                            </div>
+                            <div class="sp500-stat-item">
+                                <div class="sp500-stat-label">Outperformance</div>
+                                <div class="sp500-stat-value positive" id="outperformance">+27.4%</div>
+                            </div>
+                            <div class="sp500-stat-item">
+                                <div class="sp500-stat-label">Period</div>
+                                <div class="sp500-stat-value" style="font-size: 16px; color: #9ca3af;" id="comparison-period">May 2022 - Jan 2025</div>
+                            </div>
+                        </div>
+                        <div class="sp500-chart-container">
+                            <canvas id="sp500Chart"></canvas>
+                        </div>
+                        <div class="sp500-disclaimer">
+                            📈 Comparison based on actual S&P 500 returns and estimated portfolio values from congressional disclosures. Starting value normalized to $95M for both.
+                        </div>
+                    </div>
+
                     <!-- Top Holdings -->
                     <div class="holdings-card">
                         <h2>Top Holdings</h2>
@@ -210,6 +304,7 @@
                                         <th>Date</th>
                                         <th>Ticker</th>
                                         <th>Amount</th>
+                                        <th>Share</th>
                                     </tr>
                                 </thead>
                                 <tbody id="recent-trades-body">

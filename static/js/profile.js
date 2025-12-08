@@ -143,7 +143,8 @@ function updateRecentTrades(trades) {
     tbody.innerHTML = trades.map(trade => {
         const date = trade.date || trade.traded_date || trade.filed_date || 'N/A';
         const amount = trade.amount || '$0';
-        const isPurchase = trade.action === 'Purchase';
+        const action = trade.action || 'Trade';
+        const isPurchase = action === 'Purchase';
         const amountClass = isPurchase ? 'positive' : 'negative';
         const amountPrefix = isPurchase ? '+' : '-';
         
@@ -152,6 +153,14 @@ function updateRecentTrades(trades) {
                 <td>${date}</td>
                 <td><a href="/stock/${trade.ticker}" style="color: #10b981; text-decoration: none; font-weight: 600;">${trade.ticker || 'N/A'}</a></td>
                 <td class="${amountClass}">${amountPrefix}${amount}</td>
+                <td>
+                    <button class="share-btn" onclick="shareTradeOnTwitter('${trade.ticker}', '${action}', '${date}', '${amount}')" title="Share on X/Twitter">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                        Share
+                    </button>
+                </td>
             </tr>
         `;
     }).join('');
@@ -325,11 +334,153 @@ function createChart(labels, data) {
         });
 }
 
+// Load Nancy Says quote
+async function loadNewQuote() {
+    try {
+        const response = await fetch(`${API_BASE}/nancy-quote`);
+        const quote = await response.json();
+        
+        document.getElementById('nancy-quote-text').textContent = `"${quote.quote}"`;
+        document.getElementById('nancy-quote-source').textContent = `— ${quote.source}`;
+        
+        // Add animation
+        const box = document.getElementById('nancy-says-box');
+        box.style.animation = 'none';
+        setTimeout(() => {
+            box.style.animation = 'fadeInUp 0.6s ease';
+        }, 10);
+    } catch (error) {
+        console.error('Error loading quote:', error);
+    }
+}
+
+// Load S&P 500 comparison chart
+let sp500Chart = null;
+
+async function loadSP500Comparison() {
+    try {
+        const response = await fetch(`${API_BASE}/sp500-comparison`);
+        const data = await response.json();
+        
+        // Update stats
+        document.getElementById('pelosi-return').textContent = `+${data.pelosi_return}%`;
+        document.getElementById('sp500-return').textContent = `+${data.sp500_return}%`;
+        document.getElementById('outperformance').textContent = `+${data.outperformance}%`;
+        document.getElementById('comparison-period').textContent = data.period;
+        
+        // Create comparison chart
+        const ctx = document.getElementById('sp500Chart');
+        if (!ctx) return;
+        
+        if (sp500Chart) {
+            sp500Chart.destroy();
+        }
+        
+        const labels = data.pelosi_data.map(d => {
+            const date = new Date(d.date + '-01');
+            return date.toLocaleDateString('en-US', { month: 'short', year: 'yy' });
+        });
+        
+        sp500Chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Nancy Pelosi Portfolio',
+                        data: data.pelosi_data.map(d => d.value),
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        borderWidth: 3,
+                        fill: false,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'S&P 500',
+                        data: data.sp500_data.map(d => d.value),
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 3,
+                        fill: false,
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            color: '#e5e7eb',
+                            font: {
+                                size: 12,
+                                weight: '500'
+                            },
+                            padding: 15,
+                            usePointStyle: true
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: $${(context.parsed.y / 1000000).toFixed(1)}M`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + (value / 1000000).toFixed(0) + 'M';
+                            },
+                            color: '#9ca3af'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.05)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#9ca3af',
+                            maxRotation: 45,
+                            minRotation: 45
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error loading S&P 500 comparison:', error);
+    }
+}
+
+// Share trade on Twitter/X
+function shareTradeOnTwitter(ticker, action, date, amount) {
+    const text = `Nancy Pelosi just ${action.toLowerCase()}ed ${amount} in $${ticker} on ${date}! 📈 Track her portfolio here:`;
+    const url = window.location.origin;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+    window.open(twitterUrl, '_blank', 'width=550,height=420');
+}
+
 // Time range selector
 document.addEventListener('DOMContentLoaded', function() {
     fetchPortfolioData();
     updateSectorAllocation();
     initPerformanceChart();
+    loadNewQuote();
+    loadSP500Comparison();
 
     // Time range buttons - these are the 1M, 3M, 6M, 1Y, All buttons
     const timeBtns = document.querySelectorAll('.time-btn');
@@ -343,7 +494,5 @@ document.addEventListener('DOMContentLoaded', function() {
             filterAndDisplayChart(period);
         });
     });
-    
-    // REMOVED DUPLICATE - time-btn event listeners are already set above
 });
 
