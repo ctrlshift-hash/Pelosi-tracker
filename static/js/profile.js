@@ -378,7 +378,7 @@ async function loadSP500Comparison() {
         
         const labels = data.pelosi_data.map(d => {
             const date = new Date(d.date + '-01');
-            return date.toLocaleDateString('en-US', { month: 'short', year: 'yy' });
+            return date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
         });
         
         sp500Chart = new Chart(ctx, {
