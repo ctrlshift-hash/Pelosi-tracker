@@ -387,22 +387,26 @@ async function loadSP500Comparison() {
                 labels: labels,
                 datasets: [
                     {
-                        label: 'Nancy Pelosi Portfolio',
+                        label: 'Nancy Pelosi',
                         data: data.pelosi_data.map(d => d.value),
                         borderColor: '#10b981',
                         backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                        borderWidth: 3,
+                        borderWidth: 2.5,
                         fill: false,
-                        tension: 0.4
+                        tension: 0.4,
+                        pointRadius: 0,
+                        pointHoverRadius: 4
                     },
                     {
                         label: 'S&P 500',
                         data: data.sp500_data.map(d => d.value),
                         borderColor: '#3b82f6',
                         backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                        borderWidth: 3,
+                        borderWidth: 2.5,
                         fill: false,
-                        tension: 0.4
+                        tension: 0.4,
+                        pointRadius: 0,
+                        pointHoverRadius: 4
                     }
                 ]
             },
@@ -417,17 +421,29 @@ async function loadSP500Comparison() {
                     legend: {
                         display: true,
                         position: 'top',
+                        align: 'start',
                         labels: {
                             color: '#e5e7eb',
                             font: {
-                                size: 12,
-                                weight: '500'
+                                size: 11,
+                                weight: '600'
                             },
-                            padding: 15,
-                            usePointStyle: true
+                            padding: 10,
+                            usePointStyle: true,
+                            pointStyle: 'line',
+                            boxWidth: 20,
+                            boxHeight: 2
                         }
                     },
                     tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        padding: 10,
+                        titleFont: {
+                            size: 11
+                        },
+                        bodyFont: {
+                            size: 11
+                        },
                         callbacks: {
                             label: function(context) {
                                 return `${context.dataset.label}: $${(context.parsed.y / 1000000).toFixed(1)}M`;
@@ -442,17 +458,27 @@ async function loadSP500Comparison() {
                             callback: function(value) {
                                 return '$' + (value / 1000000).toFixed(0) + 'M';
                             },
-                            color: '#9ca3af'
+                            color: '#6b7280',
+                            font: {
+                                size: 10
+                            },
+                            maxTicksLimit: 6
                         },
                         grid: {
-                            color: 'rgba(255, 255, 255, 0.05)'
+                            color: 'rgba(255, 255, 255, 0.03)',
+                            drawBorder: false
                         }
                     },
                     x: {
                         ticks: {
-                            color: '#9ca3af',
-                            maxRotation: 45,
-                            minRotation: 45
+                            color: '#6b7280',
+                            font: {
+                                size: 9
+                            },
+                            maxRotation: 0,
+                            minRotation: 0,
+                            autoSkip: true,
+                            maxTicksLimit: 10
                         },
                         grid: {
                             display: false

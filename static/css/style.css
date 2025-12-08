@@ -294,10 +294,10 @@ html {
 .sp500-comparison-card {
     background: linear-gradient(135deg, rgba(20, 25, 45, 0.9), rgba(15, 20, 35, 0.9));
     border: 1px solid rgba(59, 130, 246, 0.2);
-    border-radius: 16px;
-    padding: 24px;
-    margin: 30px 0;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     animation: fadeInUp 0.6s ease;
 }
 
@@ -305,27 +305,27 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .sp500-header h3 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     color: #fff;
 }
 
 .sp500-stats {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-bottom: 24px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
 }
 
 .sp500-stat-item {
     background: rgba(59, 130, 246, 0.05);
     border: 1px solid rgba(59, 130, 246, 0.15);
-    border-radius: 10px;
-    padding: 16px;
+    border-radius: 8px;
+    padding: 12px;
     transition: all 0.3s ease;
 }
 
@@ -336,15 +336,15 @@ html {
 }
 
 .sp500-stat-label {
-    font-size: 13px;
+    font-size: 11px;
     color: #9ca3af;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .sp500-stat-value {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     color: #fff;
 }
@@ -359,17 +359,21 @@ html {
 
 .sp500-chart-container {
     position: relative;
-    height: 300px;
-    margin-top: 20px;
+    height: 250px;
+    margin-top: 16px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 10px;
 }
 
 .sp500-disclaimer {
-    font-size: 12px;
+    font-size: 11px;
     color: #6b7280;
-    margin-top: 16px;
-    padding-top: 16px;
+    margin-top: 12px;
+    padding-top: 12px;
     border-top: 1px solid rgba(59, 130, 246, 0.1);
     text-align: center;
+    line-height: 1.4;
 }
 
 /* Fade-in animations */
