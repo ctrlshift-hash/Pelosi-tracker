@@ -494,7 +494,8 @@ async function loadSP500Comparison() {
 
 // Share trade on Twitter/X
 function shareTradeOnTwitter(ticker, action, date, amount) {
-    const text = `Nancy Pelosi just ${action.toLowerCase()}ed ${amount} in $${ticker} on ${date}! 📈 Track her portfolio here:`;
+    const actionText = action === 'Purchase' ? 'purchased' : 'sold';
+    const text = `Nancy Pelosi just ${actionText} ${amount} in $${ticker} on ${date}! 📈 Track her portfolio here:`;
     const url = window.location.origin;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
     window.open(twitterUrl, '_blank', 'width=550,height=420');
