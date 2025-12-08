@@ -508,8 +508,9 @@ html {
 .prediction-reasoning {
     font-size: 11px;
     color: #d1d5db;
-    line-height: 1.4;
-    margin-bottom: 8px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    min-height: 60px;
 }
 
 .prediction-sector {

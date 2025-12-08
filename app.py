@@ -347,7 +347,7 @@ def get_trade_predictions():
             'ticker': 'AMD',
             'company_name': 'Advanced Micro Devices',
             'confidence': 85,
-            'reasoning': 'Similar to NVDA - AI chip competitor in portfolio sector',
+            'reasoning': 'AI chip competitor to NVDA (19% of her portfolio). She bought NVDA 8 times in 2 years. AMD benefits from same AI boom with lower entry price. Pattern: She doubles down on winning sectors.',
             'sector': 'Technology',
             'last_traded': 'Never traded',
             'pattern': 'Sector preference match'
@@ -359,7 +359,7 @@ def get_trade_predictions():
             'ticker': 'META',
             'company_name': 'Meta Platforms',
             'confidence': 78,
-            'reasoning': 'Big Tech peer - owns GOOGL & MSFT, META fits pattern',
+            'reasoning': 'Owns GOOGL (17%) & MSFT (4%) but missing META from Big Tech trio. She favors mega-cap tech with AI exposure. META\'s AI investments + ad revenue = her typical play. Pattern: Completes sector sets.',
             'sector': 'Technology',
             'last_traded': 'Never traded',
             'pattern': 'Big Tech completion'
@@ -371,7 +371,7 @@ def get_trade_predictions():
             'ticker': 'ZS',
             'company_name': 'Zscaler',
             'confidence': 72,
-            'reasoning': 'Cybersecurity play - owns PANW & CRWD, ZS completes trio',
+            'reasoning': 'Owns PANW (8%) & CRWD (6%) - both cybersecurity. She clusters positions in hot sectors. ZS is #3 in cloud security. Pattern: She bought PANW & CRWD within months of each other, suggesting sector conviction.',
             'sector': 'Technology',
             'last_traded': 'Never traded',
             'pattern': 'Sector clustering'
