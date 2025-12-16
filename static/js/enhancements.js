@@ -337,37 +337,6 @@ function checkForNewTrades(oldTrades, newTrades) {
     });
 }
 
-// Dark Mode Toggle (even though already dark, allows switching themes)
-let darkMode = true;
-
-function initDarkModeToggle() {
-    const toggle = document.getElementById('dark-mode-toggle');
-    if (toggle) {
-        toggle.addEventListener('click', () => {
-            darkMode = !darkMode;
-            document.body.classList.toggle('light-mode', !darkMode);
-            localStorage.setItem('darkMode', darkMode);
-            updateDarkModeIcon();
-        });
-        
-        // Load saved preference
-        const saved = localStorage.getItem('darkMode');
-        if (saved !== null) {
-            darkMode = saved === 'true';
-            document.body.classList.toggle('light-mode', !darkMode);
-        }
-        updateDarkModeIcon();
-    }
-}
-
-function updateDarkModeIcon() {
-    const icon = document.querySelector('#dark-mode-toggle i');
-    if (icon && typeof lucide !== 'undefined') {
-        icon.setAttribute('data-lucide', darkMode ? 'sun' : 'moon');
-        lucide.createIcons();
-    }
-}
-
 // Comparison Tools
 function initComparisonTools() {
     const compareBtn = document.getElementById('compare-btn');
