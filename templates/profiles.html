@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Dashboard - Pelosi Tracker</title>
+    <link rel="icon" type="image/png" href="https://static.wixstatic.com/media/e2da02_a39dfd0e6b8a430f81cac5ad40597208~mv2.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Background Video -->
+    <video id="background-video" autoplay muted loop playsinline preload="auto">
+        <source src="https://pub-de5cfab5b69047b7ba92c036589e9045.r2.dev/Galaxy%20Free%20Background%20Video%2C%20Motion%20Graphics%2C%20No%20Copyright%20Background%20%20All%20Background%20Video%20-%20All%20Background%20Videos%20(1080p%2C%20h264%2C%20youtube).mp4" type="video/mp4">
+    </video>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="https://static.wixstatic.com/media/e2da02_fa14682774564a55a4ce110e426df23e~mv2.png" alt="Nancy Pelosi" class="nav-logo">
+                <span>Pelosi Tracker</span>
+            </div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/#holdings">Holdings</a>
+                <a href="/#trades">Trades</a>
+                <a href="/" onclick="openAboutModal(); return false;">About</a>
+                <a href="/profiles" class="active">Profile</a>
+            </div>
+            <div class="nav-social">
+                <a href="https://x.com/home" target="_blank" class="social-icon" title="Follow on X">
+                    <img src="https://static.wixstatic.com/media/e2da02_75efd7a093fd4113a9662b914a541af9~mv2.jpg" alt="X/Twitter">
+                </a>
+                <a href="https://pump.fun" target="_blank" class="social-icon" title="Pump.fun">
+                    <img src="https://static.wixstatic.com/media/e2da02_248e6293fa024f6e9dd4130271bb14c3~mv2.png" alt="Pump.fun">
+                </a>
+                <button class="ca-button" onclick="copyCaToClipboard()" title="Click to copy Contract Address">
+                    <span class="ca-label">CA:</span>
+                    <span class="ca-value">TBA</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Dashboard Section -->
+    <section class="profiles-dashboard-section">
+        <div class="container">
+            <h1 class="profiles-dashboard-title">Profile Dashboard</h1>
+            <p class="profiles-dashboard-subtitle">Select a profile to view detailed trading information and portfolio analysis</p>
+            
+            <div class="profiles-grid">
+                <!-- Nancy Pelosi Profile Card -->
+                <a href="/profile" class="profile-card">
+                    <div class="profile-card-image">
+                        <img src="https://static.wixstatic.com/media/e2da02_a39dfd0e6b8a430f81cac5ad40597208~mv2.png" alt="Nancy Pelosi">
+                    </div>
+                    <div class="profile-card-content">
+                        <h3>Nancy Pelosi</h3>
+                        <p class="profile-card-title">Representative, California</p>
+                        <div class="profile-card-badges">
+                            <span class="badge badge-blue">Democrat</span>
+                            <span class="badge badge-gray">District 11</span>
+                        </div>
+                        <div class="profile-card-stats">
+                            <div class="profile-card-stat">
+                                <span class="stat-label">Portfolio Value</span>
+                                <span class="stat-value" id="nancy-portfolio-value">$168.00M</span>
+                            </div>
+                            <div class="profile-card-stat">
+                                <span class="stat-label">Performance</span>
+                                <span class="stat-value positive" id="nancy-performance">+38.0%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-card-arrow">
+                        <i data-lucide="arrow-right" style="width: 24px; height: 24px;"></i>
+                    </div>
+                </a>
+                
+                <!-- More profiles can be added here in the future -->
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/enhancements.js') }}"></script>
+    <script>
+        // Initialize Lucide icons
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+            
+            // Fetch and update Nancy's stats
+            fetch('/api/portfolio')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.performance) {
+                        const portfolioValue = document.getElementById('nancy-portfolio-value');
+                        if (portfolioValue && data.performance.total_invested) {
+                            const invested = data.performance.total_invested;
+                            portfolioValue.textContent = `$${(invested / 1000000).toFixed(2)}M`;
+                        }
+                        
+                        const performance = document.getElementById('nancy-performance');
+                        if (performance && data.performance.performance_percent !== undefined) {
+                            const perf = data.performance.performance_percent;
+                            performance.textContent = `${perf >= 0 ? '+' : ''}${perf.toFixed(1)}%`;
+                            performance.classList.remove('positive', 'negative');
+                            performance.classList.add(perf >= 0 ? 'positive' : 'negative');
+                        }
+                    }
+                })
+                .catch(error => console.error('Error fetching portfolio data:', error));
+        });
+        
+        // Copy CA function
+        function copyCaToClipboard() {
+            const caValue = document.querySelector('.ca-value').textContent;
+            navigator.clipboard.writeText(caValue).then(() => {
+                alert('Contract Address copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>
+

@@ -299,6 +299,11 @@ def index():
     print("Index route called", flush=True)
     return render_template('index.html')
 
+@app.route('/profiles')
+def profiles():
+    print("Profiles dashboard route called", flush=True)
+    return render_template('profiles.html')
+
 @app.route('/profile')
 def profile():
     print("Profile route called", flush=True)
