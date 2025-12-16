@@ -2872,6 +2872,9 @@ html {
     white-space: nowrap;
     box-sizing: border-box;
     line-height: 1.5;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
 }
 
 .export-btn i {
