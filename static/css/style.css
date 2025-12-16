@@ -1806,7 +1806,7 @@ html {
 }
 
 .footer-section p {
-    color: #888;
+    color: #fff;
     font-size: 0.9rem;
     line-height: 1.6;
 }
@@ -1815,7 +1815,7 @@ html {
     text-align: center;
     padding-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    color: #666;
+    color: #fff;
     font-size: 0.85rem;
 }
 
