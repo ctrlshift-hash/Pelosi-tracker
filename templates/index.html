@@ -429,16 +429,6 @@
                 lucide.createIcons();
             }
         });
-        
-        // Re-initialize icons when modal opens
-        function openAboutModal() {
-            document.getElementById('aboutModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-            // Re-initialize icons in modal
-            if (typeof lucide !== 'undefined') {
-                setTimeout(() => lucide.createIcons(), 100);
-            }
-        }
     </script>
 </body>
 </html>
