@@ -581,13 +581,20 @@ function hideLoadingScreen() {
     }
 }
 
-// Hide loading screen after page loads
+// Hide loading screen after page loads (minimum 3 seconds)
+const minLoadTime = 3000; // 3 seconds
+const startTime = Date.now();
+
+function checkAndHideLoading() {
+    const elapsed = Date.now() - startTime;
+    const remaining = Math.max(0, minLoadTime - elapsed);
+    setTimeout(hideLoadingScreen, remaining);
+}
+
 if (document.readyState === 'complete') {
-    setTimeout(hideLoadingScreen, 500);
+    checkAndHideLoading();
 } else {
-    window.addEventListener('load', function() {
-        setTimeout(hideLoadingScreen, 500);
-    });
+    window.addEventListener('load', checkAndHideLoading);
 }
 
 // Time range selector
