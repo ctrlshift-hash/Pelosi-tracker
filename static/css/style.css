@@ -1168,12 +1168,12 @@ html {
 
 /* Combined Stats Card */
 .hero-stats-combined {
-    max-width: 900px;
+    max-width: 600px;
     margin: 0 auto;
     background: linear-gradient(135deg, rgba(20, 20, 40, 0.75), rgba(30, 30, 50, 0.7));
     border: 1px solid rgba(59, 130, 246, 0.3);
     border-radius: 16px;
-    padding: 2.5rem;
+    padding: 2rem;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease;
     position: relative;
