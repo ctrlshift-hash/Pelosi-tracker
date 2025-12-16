@@ -2783,9 +2783,11 @@ html {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     margin-left: 1rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: stretch;
     width: calc(100% - 1rem);
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .search-input-wrapper {
