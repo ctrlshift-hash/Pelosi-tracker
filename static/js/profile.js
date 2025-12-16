@@ -123,13 +123,26 @@ function updateHoldingsChart(holdings) {
                 legend: {
                     display: false
                 },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return `${context.label}: ${context.parsed.toFixed(1)}%`;
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                            padding: 12,
+                            titleFont: { size: 13, weight: '600' },
+                            bodyFont: { size: 12 },
+                            borderColor: 'rgba(16, 185, 129, 0.5)',
+                            borderWidth: 1,
+                            callbacks: {
+                                title: function(context) {
+                                    return 'Holdings Distribution';
+                                },
+                                label: function(context) {
+                                    const label = context.label;
+                                    const value = context.parsed;
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((value / total) * 100).toFixed(1);
+                                    return `${label}: ${value.toFixed(1)}% (${percentage}% of portfolio)`;
+                                }
+                            }
                         }
-                    }
-                }
             }
         }
     });
@@ -305,9 +318,28 @@ function createChart(labels, data) {
                         display: false
                     },
                     tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                        padding: 12,
+                        titleFont: { size: 13, weight: '600' },
+                        bodyFont: { size: 12 },
+                        borderColor: 'rgba(59, 130, 246, 0.5)',
+                        borderWidth: 1,
                         callbacks: {
+                            title: function(context) {
+                                return context[0].label;
+                            },
                             label: function(context) {
-                                return `US$${context.parsed.y.toLocaleString()}`;
+                                return `Portfolio Value: US$${context.parsed.y.toLocaleString()}`;
+                            },
+                            afterLabel: function(context) {
+                                if (context.datasetIndex === 0 && context.dataIndex > 0) {
+                                    const prevValue = context.dataset.data[context.dataIndex - 1];
+                                    const change = context.parsed.y - prevValue;
+                                    const changePercent = ((change / prevValue) * 100).toFixed(2);
+                                    const sign = change >= 0 ? '+' : '';
+                                    return `${sign}${changePercent}% (${sign}$${(change / 1000000).toFixed(2)}M)`;
+                                }
+                                return '';
                             }
                         }
                     }

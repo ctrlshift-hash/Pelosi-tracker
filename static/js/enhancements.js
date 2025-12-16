@@ -140,6 +140,8 @@ function filterTrades(searchTerm, filterBy) {
 
 // Trade Insights
 window.getTradeInsight = function(trade) {
+    if (!trade) return '';
+    
     const insights = {
         'NVDA': {
             'Purchase': 'Major AI chip bet - NVDA is 19% of portfolio. Strong conviction on AI infrastructure growth.',
