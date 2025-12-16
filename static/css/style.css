@@ -597,17 +597,17 @@ html {
 /* Nancy Pelosi Side Image */
 .nancy-side-image {
     position: fixed;
-    right: -150px;
-    top: 60px;
+    right: -200px;
+    top: 0;
     bottom: 0;
     z-index: 1;
-    width: 900px;
+    width: 1200px;
     height: auto;
     opacity: 0.9;
     transition: opacity 0.3s ease;
     pointer-events: none;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .nancy-side-image:hover {
@@ -617,10 +617,10 @@ html {
 .nancy-side-image img {
     width: 100%;
     height: auto;
-    max-height: calc(100vh - 60px);
+    max-height: 100vh;
     display: block;
     object-fit: contain;
-    object-position: bottom;
+    object-position: center;
 }
 
 .nav-container {
@@ -1037,7 +1037,7 @@ html {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    padding-right: 600px;
+    padding-right: 700px;
     text-align: center;
     position: relative;
     z-index: 2;
@@ -1809,9 +1809,9 @@ html {
     }
     
     .nancy-side-image {
-        width: 300px;
-        right: -80px;
-        top: 60px;
+        width: 350px;
+        right: -100px;
+        top: 0;
         opacity: 0.7;
     }
     
