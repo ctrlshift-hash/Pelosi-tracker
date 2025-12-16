@@ -1170,7 +1170,7 @@ html {
 .hero-stats-combined {
     max-width: 900px;
     margin: 0 auto;
-    background: linear-gradient(135deg, rgba(20, 20, 40, 0.98), rgba(30, 30, 50, 0.95));
+    background: linear-gradient(135deg, rgba(20, 20, 40, 0.75), rgba(30, 30, 50, 0.7));
     border: 1px solid rgba(59, 130, 246, 0.3);
     border-radius: 16px;
     padding: 2.5rem;
@@ -1178,6 +1178,7 @@ html {
     transition: all 0.3s ease;
     position: relative;
     z-index: 2;
+    backdrop-filter: blur(10px);
 }
 
 .hero-stats-combined:hover {
