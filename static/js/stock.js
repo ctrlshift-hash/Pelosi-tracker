@@ -278,30 +278,3 @@ document.addEventListener('DOMContentLoaded', function() {
     
 });
 
-// Hide loading screen function
-function hideLoadingScreen() {
-    const loadingScreen = document.getElementById('loading-screen');
-    if (loadingScreen) {
-        loadingScreen.classList.add('hidden');
-        setTimeout(function() {
-            loadingScreen.style.display = 'none';
-        }, 500);
-    }
-}
-
-// Hide loading screen after page loads (minimum 3 seconds)
-const minLoadTime = 3000; // 3 seconds
-const startTime = Date.now();
-
-function checkAndHideLoading() {
-    const elapsed = Date.now() - startTime;
-    const remaining = Math.max(0, minLoadTime - elapsed);
-    setTimeout(hideLoadingScreen, remaining);
-}
-
-if (document.readyState === 'complete') {
-    checkAndHideLoading();
-} else {
-    window.addEventListener('load', checkAndHideLoading);
-}
-

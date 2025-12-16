@@ -123,26 +123,26 @@ function updateHoldingsChart(holdings) {
                 legend: {
                     display: false
                 },
-                        tooltip: {
+                tooltip: {
                             backgroundColor: 'rgba(0, 0, 0, 0.9)',
                             padding: 12,
                             titleFont: { size: 13, weight: '600' },
                             bodyFont: { size: 12 },
                             borderColor: 'rgba(16, 185, 129, 0.5)',
                             borderWidth: 1,
-                            callbacks: {
+                    callbacks: {
                                 title: function(context) {
                                     return 'Holdings Distribution';
                                 },
-                                label: function(context) {
+                        label: function(context) {
                                     const label = context.label;
                                     const value = context.parsed;
                                     const total = context.dataset.data.reduce((a, b) => a + b, 0);
                                     const percentage = ((value / total) * 100).toFixed(1);
                                     return `${label}: ${value.toFixed(1)}% (${percentage}% of portfolio)`;
-                                }
-                            }
                         }
+                    }
+                }
             }
         }
     });
@@ -568,33 +568,6 @@ async function loadTradePredictions() {
     } catch (error) {
         console.error('Error loading predictions:', error);
     }
-}
-
-// Hide loading screen function
-function hideLoadingScreen() {
-    const loadingScreen = document.getElementById('loading-screen');
-    if (loadingScreen) {
-        loadingScreen.classList.add('hidden');
-        setTimeout(function() {
-            loadingScreen.style.display = 'none';
-        }, 500);
-    }
-}
-
-// Hide loading screen after page loads (minimum 3 seconds)
-const minLoadTime = 3000; // 3 seconds
-const startTime = Date.now();
-
-function checkAndHideLoading() {
-    const elapsed = Date.now() - startTime;
-    const remaining = Math.max(0, minLoadTime - elapsed);
-    setTimeout(hideLoadingScreen, remaining);
-}
-
-if (document.readyState === 'complete') {
-    checkAndHideLoading();
-} else {
-    window.addEventListener('load', checkAndHideLoading);
 }
 
 // Time range selector
