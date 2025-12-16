@@ -584,14 +584,14 @@ html {
 
 /* Navbar */
 .navbar {
-    background: transparent;
-    border-bottom: none;
+    background: transparent !important;
+    border-bottom: none !important;
     padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: none;
-    box-shadow: none;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
 }
 
 /* Nancy Pelosi Side Image */
@@ -631,7 +631,7 @@ html {
     justify-content: space-between;
     align-items: center;
     position: relative;
-    background: transparent;
+    background: transparent !important;
 }
 
 .nav-brand {
