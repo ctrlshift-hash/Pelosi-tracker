@@ -276,17 +276,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Hide loading screen when page is loaded
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            const loadingScreen = document.getElementById('loading-screen');
-            if (loadingScreen) {
-                loadingScreen.classList.add('hidden');
-                setTimeout(function() {
-                    loadingScreen.style.display = 'none';
-                }, 500);
-            }
-        }, 500);
-    });
 });
+
+// Hide loading screen function
+function hideLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        loadingScreen.classList.add('hidden');
+        setTimeout(function() {
+            loadingScreen.style.display = 'none';
+        }, 500);
+    }
+}
+
+// Hide loading screen after page loads
+if (document.readyState === 'complete') {
+    setTimeout(hideLoadingScreen, 500);
+} else {
+    window.addEventListener('load', function() {
+        setTimeout(hideLoadingScreen, 500);
+    });
+}
 
