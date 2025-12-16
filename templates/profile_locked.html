@@ -118,20 +118,59 @@
                         </div>
                     </div>
 
-                    <!-- Filing Statistics - LOCKED -->
+                    <!-- Filing Statistics - VISIBLE -->
                     <div class="info-card">
                         <h3>Filing Statistics</h3>
                         <div class="info-item">
-                            <span class="info-label">Avg. Reporting Time:</span>
-                            <span class="info-value locked-financial">---</span>
+                            <span class="info-label">Avg. Reporting Time:
+                                <span class="tooltip">
+                                    <span class="tooltip-icon">?</span>
+                                    <span class="tooltip-text">
+                                        <strong>STOCK Act Requirement:</strong> Members of Congress must report trades within <strong>45 days</strong> of the transaction date.
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="info-value">
+                                {% if filing_stats and filing_stats.avg_reporting_time %}
+                                    {{ filing_stats.avg_reporting_time }} days
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Avg. Filing Frequency:</span>
-                            <span class="info-value locked-financial">---</span>
+                            <span class="info-label">Avg. Filing Frequency:
+                                <span class="tooltip">
+                                    <span class="tooltip-icon">?</span>
+                                    <span class="tooltip-text">
+                                        How often trades are filed on average. More frequent filings indicate active trading activity in the portfolio.
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="info-value">
+                                {% if filing_stats and filing_stats.avg_filing_frequency %}
+                                    {{ filing_stats.avg_filing_frequency }} days
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Time Since Last Filing:</span>
-                            <span class="info-value locked-financial">---</span>
+                            <span class="info-label">Time Since Last Filing:
+                                <span class="tooltip">
+                                    <span class="tooltip-icon">?</span>
+                                    <span class="tooltip-text">
+                                        Number of days since the most recent trade disclosure was filed. Filings are required within 45 days per the STOCK Act of 2012.
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="info-value">
+                                {% if filing_stats and filing_stats.time_since_last_filing %}
+                                    {{ filing_stats.time_since_last_filing }} days
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </span>
                         </div>
                     </div>
 

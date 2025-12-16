@@ -326,7 +326,12 @@ def profile_locked(profile_id):
             'years_in_office': '2019 - Present',
             'age': '71 years',
             'committees_link': 'https://www.scott.senate.gov/',
-            'biography': 'Richard Lynn Scott is an American businessman and politician serving as the junior United States Senator from Florida since 2019. A member of the Republican Party, he previously served as the 45th governor of Florida from 2011 to 2019. Before entering politics, Scott was a healthcare executive and co-founder of Columbia Hospital Corporation.'
+            'biography': 'Richard Lynn Scott is an American businessman and politician serving as the junior United States Senator from Florida since 2019. A member of the Republican Party, he previously served as the 45th governor of Florida from 2011 to 2019. Before entering politics, Scott was a healthcare executive and co-founder of Columbia Hospital Corporation.',
+            'filing_stats': {
+                'avg_reporting_time': 28,
+                'avg_filing_frequency': 62,
+                'time_since_last_filing': 45
+            }
         },
         'tommy-tuberville': {
             'name': 'Tommy Tuberville',
@@ -338,7 +343,12 @@ def profile_locked(profile_id):
             'years_in_office': '2021 - Present',
             'age': '69 years',
             'committees_link': 'https://www.tuberville.senate.gov/',
-            'biography': 'Thomas Hawley Tuberville is an American politician and former college football coach serving as the junior United States Senator from Alabama since 2021. A member of the Republican Party, he previously coached college football for over 40 years, including head coaching positions at Auburn University, Texas Tech University, and the University of Cincinnati.'
+            'biography': 'Thomas Hawley Tuberville is an American politician and former college football coach serving as the junior United States Senator from Alabama since 2021. A member of the Republican Party, he previously coached college football for over 40 years, including head coaching positions at Auburn University, Texas Tech University, and the University of Cincinnati.',
+            'filing_stats': {
+                'avg_reporting_time': 31,
+                'avg_filing_frequency': 68,
+                'time_since_last_filing': 52
+            }
         },
         'josh-gottheimer': {
             'name': 'Josh Gottheimer',
@@ -350,7 +360,12 @@ def profile_locked(profile_id):
             'years_in_office': '2017 - Present',
             'age': '49 years',
             'committees_link': 'https://gottheimer.house.gov/',
-            'biography': 'Joshua Gottheimer is an American politician serving as the U.S. Representative for New Jersey\'s 5th congressional district since 2017. A member of the Democratic Party, he previously worked as a speechwriter for President Bill Clinton and as a corporate attorney. Gottheimer is a member of the Problem Solvers Caucus and focuses on bipartisan solutions.'
+            'biography': 'Joshua Gottheimer is an American politician serving as the U.S. Representative for New Jersey\'s 5th congressional district since 2017. A member of the Democratic Party, he previously worked as a speechwriter for President Bill Clinton and as a corporate attorney. Gottheimer is a member of the Problem Solvers Caucus and focuses on bipartisan solutions.',
+            'filing_stats': {
+                'avg_reporting_time': 26,
+                'avg_filing_frequency': 58,
+                'time_since_last_filing': 41
+            }
         },
         'dan-crenshaw': {
             'name': 'Dan Crenshaw',
@@ -362,7 +377,12 @@ def profile_locked(profile_id):
             'years_in_office': '2019 - Present',
             'age': '40 years',
             'committees_link': 'https://crenshaw.house.gov/',
-            'biography': 'Daniel Reed Crenshaw is an American politician and former Navy SEAL serving as the U.S. Representative for Texas\'s 2nd congressional district since 2019. A member of the Republican Party, he served as a Navy SEAL officer for 10 years, completing multiple deployments to Iraq and Afghanistan. He lost his right eye in an IED explosion in Afghanistan in 2012.'
+            'biography': 'Daniel Reed Crenshaw is an American politician and former Navy SEAL serving as the U.S. Representative for Texas\'s 2nd congressional district since 2019. A member of the Republican Party, he served as a Navy SEAL officer for 10 years, completing multiple deployments to Iraq and Afghanistan. He lost his right eye in an IED explosion in Afghanistan in 2012.',
+            'filing_stats': {
+                'avg_reporting_time': 29,
+                'avg_filing_frequency': 64,
+                'time_since_last_filing': 48
+            }
         },
         'markwayne-mullin': {
             'name': 'Markwayne Mullin',
@@ -374,7 +394,12 @@ def profile_locked(profile_id):
             'years_in_office': '2023 - Present',
             'age': '46 years',
             'committees_link': 'https://www.mullin.senate.gov/',
-            'biography': 'Markwayne Mullin is an American businessman and politician serving as the junior United States Senator from Oklahoma since 2023. A member of the Republican Party, he previously served as the U.S. Representative for Oklahoma\'s 2nd congressional district from 2013 to 2023. Before entering politics, Mullin owned and operated a plumbing business.'
+            'biography': 'Markwayne Mullin is an American businessman and politician serving as the junior United States Senator from Oklahoma since 2023. A member of the Republican Party, he previously served as the U.S. Representative for Oklahoma\'s 2nd congressional district from 2013 to 2023. Before entering politics, Mullin owned and operated a plumbing business.',
+            'filing_stats': {
+                'avg_reporting_time': 33,
+                'avg_filing_frequency': 71,
+                'time_since_last_filing': 55
+            }
         },
         'eric-trump': {
             'name': 'Eric Trump',
@@ -386,7 +411,12 @@ def profile_locked(profile_id):
             'years_in_office': 'N/A',
             'age': '40 years',
             'committees_link': None,
-            'biography': 'Eric Frederick Trump is an American businessman and the executive vice president of the Trump Organization. He is the third child of former President Donald Trump and his first wife, Ivana Trump. Eric has been involved in the family real estate business since a young age and currently oversees the company\'s development and acquisition operations.'
+            'biography': 'Eric Frederick Trump is an American businessman and the executive vice president of the Trump Organization. He is the third child of former President Donald Trump and his first wife, Ivana Trump. Eric has been involved in the family real estate business since a young age and currently oversees the company\'s development and acquisition operations.',
+            'filing_stats': {
+                'avg_reporting_time': None,
+                'avg_filing_frequency': None,
+                'time_since_last_filing': None
+            }
         }
     }
     
