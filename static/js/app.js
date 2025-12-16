@@ -16,35 +16,6 @@ async function fetchPortfolioData() {
 function updateUI(data) {
     console.log('Updating UI with data:', data);
     
-    // Update profile dashboard stats if section exists
-    if (data.performance) {
-        const profileTotalValue = document.getElementById('profile-total-value');
-        if (profileTotalValue && data.performance.total_invested) {
-            const invested = data.performance.total_invested;
-            profileTotalValue.textContent = `$${(invested / 1000000).toFixed(2)}M`;
-        }
-        
-        const profilePerformance = document.getElementById('profile-performance');
-        if (profilePerformance && data.performance.performance_percent !== undefined) {
-            const perf = data.performance.performance_percent;
-            profilePerformance.textContent = `${perf >= 0 ? '+' : ''}${perf.toFixed(1)}%`;
-            profilePerformance.classList.remove('positive', 'negative');
-            profilePerformance.classList.add(perf >= 0 ? 'positive' : 'negative');
-        }
-    }
-    
-    if (data.stats) {
-        const profileHoldings = document.getElementById('profile-holdings');
-        if (profileHoldings && data.stats.holdings_count !== undefined) {
-            profileHoldings.textContent = data.stats.holdings_count;
-        }
-        
-        const profileTrades = document.getElementById('profile-trades');
-        if (profileTrades && data.stats.trades_count !== undefined) {
-            profileTrades.textContent = data.stats.trades_count;
-        }
-    }
-    
     // Update hero stats (new design)
     const copiersEl = document.getElementById('copiers-stat');
     if (copiersEl && data.stats && data.stats.copiers) {
@@ -139,17 +110,17 @@ function updateUI(data) {
             
             // Small delay for skeleton effect
             setTimeout(() => {
-                tbody.innerHTML = '';
-                
-                data.holdings.forEach(holding => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="ticker"><a href="/stock/${holding.ticker}" style="color: inherit; text-decoration: none; font-weight: 700;">${holding.ticker}</a></td>
-                        <td class="price">${holding.price_display || `$${holding.last_price.toFixed(2)}`}</td>
-                        <td class="weight">${holding.weight_display || `${holding.weight.toFixed(1)}%`}</td>
-                    `;
-                    tbody.appendChild(row);
-                });
+            tbody.innerHTML = '';
+            
+            data.holdings.forEach(holding => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="ticker"><a href="/stock/${holding.ticker}" style="color: inherit; text-decoration: none; font-weight: 700;">${holding.ticker}</a></td>
+                    <td class="price">${holding.price_display || `$${holding.last_price.toFixed(2)}`}</td>
+                    <td class="weight">${holding.weight_display || `${holding.weight.toFixed(1)}%`}</td>
+                `;
+                tbody.appendChild(row);
+            });
                 
                 // Apply initial sort (weight desc by default)
                 if (typeof window.filterHoldings === 'function') {
@@ -184,30 +155,30 @@ function updateUI(data) {
                 } else {
                     // Fallback to original rendering
                     tradesContainer.innerHTML = '';
-                    data.recent_trades.forEach(trade => {
-                        const tradeCard = document.createElement('div');
-                        tradeCard.className = 'trade-card';
-                        
-                        const actionClass = trade.action === 'Purchase' ? 'purchase' : trade.action === 'Sale' ? 'sale' : '';
-                        const actionBadge = trade.action ? `<span class="action-badge ${actionClass}">${trade.action}</span>` : '';
-                        const dateInfo = trade.date || trade.traded_date || '';
-                        const amountInfo = trade.amount || '';
+            data.recent_trades.forEach(trade => {
+                const tradeCard = document.createElement('div');
+                tradeCard.className = 'trade-card';
+                
+                const actionClass = trade.action === 'Purchase' ? 'purchase' : trade.action === 'Sale' ? 'sale' : '';
+                const actionBadge = trade.action ? `<span class="action-badge ${actionClass}">${trade.action}</span>` : '';
+                const dateInfo = trade.date || trade.traded_date || '';
+                const amountInfo = trade.amount || '';
                         const insight = typeof getTradeInsight === 'function' ? getTradeInsight(trade) : '';
-                        
-                        tradeCard.innerHTML = `
-                            <div class="trade-header">
-                                <span class="trade-ticker">${trade.ticker || 'N/A'}</span>
-                                ${actionBadge}
-                            </div>
+                
+                tradeCard.innerHTML = `
+                    <div class="trade-header">
+                        <span class="trade-ticker">${trade.ticker || 'N/A'}</span>
+                        ${actionBadge}
+                    </div>
                             ${insight ? `<div class="trade-insight">${insight}</div>` : ''}
-                            <div class="trade-details">
-                                ${dateInfo ? `<div>Date: ${dateInfo}</div>` : ''}
-                                ${amountInfo ? `<div>Amount: ${amountInfo}</div>` : ''}
-                            </div>
-                        `;
-                        tradesContainer.appendChild(tradeCard);
-                    });
-                }
+                    <div class="trade-details">
+                        ${dateInfo ? `<div>Date: ${dateInfo}</div>` : ''}
+                        ${amountInfo ? `<div>Amount: ${amountInfo}</div>` : ''}
+                    </div>
+                `;
+                tradesContainer.appendChild(tradeCard);
+            });
+        }
                 
                 // Update icons
                 if (typeof lucide !== 'undefined') {
