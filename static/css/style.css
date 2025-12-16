@@ -642,10 +642,7 @@ html {
 .nav-brand {
     font-size: 1.4rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #3b82f6, #6366f1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #fff;
     transition: all 0.3s ease;
     cursor: pointer;
     display: flex;
