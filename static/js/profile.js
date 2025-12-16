@@ -572,6 +572,11 @@ async function loadTradePredictions() {
 
 // Time range selector
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+    
     fetchPortfolioData();
     updateSectorAllocation();
     initPerformanceChart();
