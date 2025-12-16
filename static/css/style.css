@@ -2752,23 +2752,21 @@ html {
     max-width: 400px;
     display: flex;
     align-items: center;
+    gap: 0.75rem;
 }
 
 .search-input-wrapper i {
-    position: absolute;
-    left: 8px;
-    top: 50%;
-    transform: translateY(-50%);
+    position: static;
     color: #6b7280;
     pointer-events: none;
-    z-index: 1;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
 }
 
 .search-input {
     width: 100%;
-    padding: 10px 12px 10px 36px;
+    padding: 10px 12px;
     background: rgba(20, 20, 30, 0.8);
     border: 1px solid rgba(59, 130, 246, 0.2);
     border-radius: 8px;
