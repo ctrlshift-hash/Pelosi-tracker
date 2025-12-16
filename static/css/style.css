@@ -2740,12 +2740,14 @@ html {
     margin-bottom: 1.5rem;
     flex-wrap: wrap;
     align-items: center;
+    width: 100%;
 }
 
 .search-input-wrapper {
     position: relative;
     flex: 1;
-    min-width: 200px;
+    min-width: 250px;
+    max-width: 400px;
 }
 
 .search-input-wrapper i {
@@ -2766,6 +2768,8 @@ html {
     color: #fff;
     font-size: 0.9rem;
     transition: all 0.3s ease;
+    height: 42px;
+    box-sizing: border-box;
 }
 
 .search-input:focus {
@@ -2783,7 +2787,13 @@ html {
     font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    min-width: 150px;
+    min-width: 180px;
+    height: 42px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23fff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
 }
 
 .filter-select:focus {
@@ -2804,6 +2814,13 @@ html {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    height: 42px;
+    white-space: nowrap;
+}
+
+.export-btn i {
+    width: 16px;
+    height: 16px;
 }
 
 .export-btn:hover {

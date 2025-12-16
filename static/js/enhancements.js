@@ -31,8 +31,8 @@ function createSkeletonLoader(type, count = 3) {
 }
 
 // Search and Filter Functions
-let allHoldings = [];
-let allTrades = [];
+window.allHoldings = window.allHoldings || [];
+window.allTrades = window.allTrades || [];
 
 function initSearchAndFilter() {
     const holdingsSearch = document.getElementById('holdings-search');
@@ -41,27 +41,38 @@ function initSearchAndFilter() {
     const tradesFilter = document.getElementById('trades-filter');
     
     if (holdingsSearch) {
-        holdingsSearch.addEventListener('input', (e) => filterHoldings(e.target.value, holdingsFilter?.value));
+        holdingsSearch.addEventListener('input', (e) => {
+            filterHoldings(e.target.value, holdingsFilter?.value || 'weight-desc');
+        });
     }
     
     if (holdingsFilter) {
-        holdingsFilter.addEventListener('change', (e) => filterHoldings(holdingsSearch?.value || '', e.target.value));
+        holdingsFilter.addEventListener('change', (e) => {
+            filterHoldings(holdingsSearch?.value || '', e.target.value);
+        });
     }
     
     if (tradesSearch) {
-        tradesSearch.addEventListener('input', (e) => filterTrades(e.target.value, tradesFilter?.value));
+        tradesSearch.addEventListener('input', (e) => {
+            filterTrades(e.target.value, tradesFilter?.value || 'all');
+        });
     }
     
     if (tradesFilter) {
-        tradesFilter.addEventListener('change', (e) => filterTrades(tradesSearch?.value || '', e.target.value));
+        tradesFilter.addEventListener('change', (e) => {
+            filterTrades(tradesSearch?.value || '', e.target.value);
+        });
     }
 }
 
-function filterHoldings(searchTerm, filterBy) {
+window.filterHoldings = function(searchTerm, filterBy) {
     const tbody = document.getElementById('holdings-body');
-    if (!tbody || !allHoldings.length) return;
+    if (!tbody) return;
     
-    let filtered = [...allHoldings];
+    const holdings = window.allHoldings || [];
+    if (!holdings.length) return;
+    
+    let filtered = [...holdings];
     
     // Search filter
     if (searchTerm) {
@@ -88,11 +99,14 @@ function filterHoldings(searchTerm, filterBy) {
     `).join('');
 }
 
-function filterTrades(searchTerm, filterBy) {
+window.filterTrades = function(searchTerm, filterBy) {
     const container = document.getElementById('trades-container');
-    if (!container || !allTrades.length) return;
+    if (!container) return;
     
-    let filtered = [...allTrades];
+    const trades = window.allTrades || [];
+    if (!trades.length) return;
+    
+    let filtered = [...trades];
     
     // Search filter
     if (searchTerm) {
@@ -201,13 +215,14 @@ function exportToCSV(data, filename) {
     document.body.removeChild(link);
 }
 
-function exportHoldings() {
-    if (!allHoldings.length) {
+window.exportHoldings = function() {
+    const holdings = window.allHoldings || [];
+    if (!holdings.length) {
         alert('No holdings data available');
         return;
     }
     
-    const exportData = allHoldings.map(h => ({
+    const exportData = holdings.map(h => ({
         Ticker: h.ticker,
         'Last Price': h.last_price,
         'Price Display': h.price_display,
@@ -218,13 +233,14 @@ function exportHoldings() {
     exportToCSV(exportData, `pelosi-holdings-${new Date().toISOString().split('T')[0]}.csv`);
 }
 
-function exportTrades() {
-    if (!allTrades.length) {
+window.exportTrades = function() {
+    const trades = window.allTrades || [];
+    if (!trades.length) {
         alert('No trades data available');
         return;
     }
     
-    const exportData = allTrades.map(t => ({
+    const exportData = trades.map(t => ({
         Date: t.date || t.traded_date || '',
         Ticker: t.ticker || '',
         Action: t.action || '',
@@ -399,9 +415,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Make functions globally available
-window.exportHoldings = exportHoldings;
-window.exportTrades = exportTrades;
-window.filterHoldings = filterHoldings;
-window.filterTrades = filterTrades;
+// Functions are already on window object above
 

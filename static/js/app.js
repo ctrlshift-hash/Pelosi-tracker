@@ -122,11 +122,9 @@ function updateUI(data) {
                     tbody.appendChild(row);
                 });
                 
-                // Update filter with stored data
-                if (typeof filterHoldings === 'function') {
-                    const searchInput = document.getElementById('holdings-search');
-                    const filterSelect = document.getElementById('holdings-filter');
-                    filterHoldings(searchInput?.value || '', filterSelect?.value || 'weight-desc');
+                // Apply initial sort (weight desc by default)
+                if (typeof window.filterHoldings === 'function') {
+                    window.filterHoldings('', 'weight-desc');
                 }
             }, 300);
         }
@@ -151,11 +149,9 @@ function updateUI(data) {
                     checkForNewTrades(oldTrades, data.recent_trades);
                 }
                 
-                // Update with filtered data
-                if (typeof filterTrades === 'function') {
-                    const searchInput = document.getElementById('trades-search');
-                    const filterSelect = document.getElementById('trades-filter');
-                    filterTrades(searchInput?.value || '', filterSelect?.value || 'all');
+                // Apply initial filter
+                if (typeof window.filterTrades === 'function') {
+                    window.filterTrades('', 'all');
                 } else {
                     // Fallback to original rendering
                     tradesContainer.innerHTML = '';
