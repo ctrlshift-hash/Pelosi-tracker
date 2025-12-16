@@ -2756,7 +2756,7 @@ html {
 
 .search-input-wrapper i {
     position: absolute;
-    left: 12px;
+    left: 8px;
     top: 50%;
     transform: translateY(-50%);
     color: #6b7280;
@@ -2768,7 +2768,7 @@ html {
 
 .search-input {
     width: 100%;
-    padding: 10px 12px 10px 40px;
+    padding: 10px 12px 10px 36px;
     background: rgba(20, 20, 30, 0.8);
     border: 1px solid rgba(59, 130, 246, 0.2);
     border-radius: 8px;
