@@ -309,6 +309,70 @@ def profile():
     print("Profile route called", flush=True)
     return render_template('profile.html')
 
+@app.route('/profile/<profile_id>')
+def profile_locked(profile_id):
+    """Render locked profile page for coming soon profiles"""
+    print(f"Locked profile route called for {profile_id}", flush=True)
+    
+    # Profile information mapping
+    profiles_info = {
+        'rick-scott': {
+            'name': 'Rick Scott',
+            'title': 'Senator, Florida',
+            'party': 'Republican',
+            'badge_class': 'badge-red',
+            'district': 'Florida'
+        },
+        'tommy-tuberville': {
+            'name': 'Tommy Tuberville',
+            'title': 'Senator, Alabama',
+            'party': 'Republican',
+            'badge_class': 'badge-red',
+            'district': 'Alabama'
+        },
+        'josh-gottheimer': {
+            'name': 'Josh Gottheimer',
+            'title': 'Representative, New Jersey',
+            'party': 'Democrat',
+            'badge_class': 'badge-blue',
+            'district': 'District 5'
+        },
+        'dan-crenshaw': {
+            'name': 'Dan Crenshaw',
+            'title': 'Representative, Texas',
+            'party': 'Republican',
+            'badge_class': 'badge-red',
+            'district': 'District 2'
+        },
+        'markwayne-mullin': {
+            'name': 'Markwayne Mullin',
+            'title': 'Senator, Oklahoma',
+            'party': 'Republican',
+            'badge_class': 'badge-red',
+            'district': 'Oklahoma'
+        },
+        'eric-trump': {
+            'name': 'Eric Trump',
+            'title': 'Businessman, New York',
+            'party': 'Republican',
+            'badge_class': 'badge-red',
+            'district': 'New York'
+        }
+    }
+    
+    profile_info = profiles_info.get(profile_id.lower())
+    if not profile_info:
+        # Default fallback
+        profile_info = {
+            'name': 'Profile',
+            'title': 'Coming Soon',
+            'party': 'Unknown',
+            'badge_class': 'badge-gray',
+            'district': 'TBA'
+        }
+    
+    return render_template('profile_locked.html', **profile_info)
+
 @app.route('/stock/<ticker>')
 def stock_detail(ticker):
     print(f"Stock detail route called for {ticker}", flush=True)

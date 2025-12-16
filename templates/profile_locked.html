@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} - Profile | Pelosi Tracker</title>
+    <link rel="icon" type="image/png" href="https://static.wixstatic.com/media/e2da02_a39dfd0e6b8a430f81cac5ad40597208~mv2.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="profile-locked">
+    <!-- Background Video -->
+    <video id="background-video" autoplay muted loop playsinline preload="auto">
+        <source src="https://pub-de5cfab5b69047b7ba92c036589e9045.r2.dev/Galaxy%20Free%20Background%20Video%2C%20Motion%20Graphics%2C%20No%20Copyright%20Background%20%20All%20Background%20Video%20-%20All%20Background%20Videos%20(1080p%2C%20h264%2C%20youtube).mp4" type="video/mp4">
+    </video>
+    
+    <!-- Coming Soon Overlay -->
+    <div class="locked-overlay">
+        <div class="locked-content">
+            <i data-lucide="lock" style="width: 64px; height: 64px; color: #fbbf24;"></i>
+            <h2>Coming Soon</h2>
+            <p>This profile is currently being prepared. Check back soon for detailed portfolio data and trading insights!</p>
+            <a href="/profiles" class="btn-back-to-profiles">
+                <i data-lucide="arrow-left" style="width: 20px; height: 20px;"></i>
+                Back to Profiles
+            </a>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="https://static.wixstatic.com/media/e2da02_fa14682774564a55a4ce110e426df23e~mv2.png" alt="Nancy Pelosi" class="nav-logo">
+                <span>Pelosi Tracker</span>
+            </div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/#holdings">Holdings</a>
+                <a href="/#trades">Trades</a>
+                <a href="#" onclick="openAboutModal(); return false;">About</a>
+                <a href="/profiles" class="active">Profile</a>
+            </div>
+            <div class="nav-social">
+                <a href="https://x.com/home" target="_blank" class="social-icon" title="Follow on X">
+                    <img src="https://static.wixstatic.com/media/e2da02_75efd7a093fd4113a9662b914a541af9~mv2.jpg" alt="X/Twitter">
+                </a>
+                <a href="https://pump.fun" target="_blank" class="social-icon" title="Pump.fun">
+                    <img src="https://static.wixstatic.com/media/e2da02_248e6293fa024f6e9dd4130271bb14c3~mv2.png" alt="Pump.fun">
+                </a>
+                <button class="ca-button" onclick="copyCaToClipboard()" title="Click to copy Contract Address">
+                    <span class="ca-label">CA:</span>
+                    <span class="ca-value">TBA</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Header (Greyed Out) -->
+    <section class="profile-section locked-content">
+        <div class="container">
+            <div class="profile-card profile-card-small" style="background: rgb(20, 20, 40) !important; max-width: 650px !important; width: 650px !important; padding: 2rem !important; margin: 0 auto !important;">
+                <div class="profile-header">
+                    <div class="profile-image">
+                        <div class="locked-placeholder"></div>
+                    </div>
+                </div>
+                
+                <div class="profile-card-top">
+                    <div class="profile-info-top">
+                        <h2>{{ name }}</h2>
+                        <p class="profile-title">{{ title }}</p>
+                        <div class="profile-badges">
+                            <span class="badge {{ badge_class }}">{{ party }}</span>
+                            <span class="badge badge-gray">{{ district }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-stats-grid">
+                    <div class="profile-stat">
+                        <div class="profile-stat-label">Total Value</div>
+                        <div class="profile-stat-value locked-stat">$XX.XXM</div>
+                    </div>
+                    <div class="profile-stat">
+                        <div class="profile-stat-label">Performance</div>
+                        <div class="profile-stat-value locked-stat">+XX.X%</div>
+                    </div>
+                    <div class="profile-stat">
+                        <div class="profile-stat-label">Holdings</div>
+                        <div class="profile-stat-value locked-stat">XX</div>
+                    </div>
+                    <div class="profile-stat">
+                        <div class="profile-stat-label">Updated</div>
+                        <div class="profile-stat-value small locked-stat">TBA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Grid (Greyed Out) -->
+    <section class="profile-content-section locked-content">
+        <div class="container">
+            <div class="profile-grid">
+                <!-- Left Column -->
+                <div class="profile-left-column">
+                    <div class="info-card locked-card">
+                        <h3>Politician Info</h3>
+                        <div class="info-item">
+                            <span class="info-label">Role:</span>
+                            <span class="info-value locked-text">---</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Years in Office:</span>
+                            <span class="info-value locked-text">---</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Age:</span>
+                            <span class="info-value locked-text">---</span>
+                        </div>
+                    </div>
+
+                    <div class="info-card locked-card">
+                        <h3>Filing Statistics</h3>
+                        <div class="info-item">
+                            <span class="info-label">Avg. Reporting Time:</span>
+                            <span class="info-value locked-text">---</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Avg. Filing Frequency:</span>
+                            <span class="info-value locked-text">---</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="profile-right-column">
+                    <div class="portfolio-overview-card locked-card">
+                        <div class="card-header">
+                            <h2>Portfolio Overview</h2>
+                        </div>
+                        <div class="portfolio-value">
+                            <div class="value-label">Total Value</div>
+                            <div class="value-amount locked-text">US$---</div>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-performance-card locked-card">
+                        <div class="card-header">
+                            <h2>Portfolio Performance</h2>
+                        </div>
+                        <div class="chart-container locked-chart">
+                            <div class="locked-chart-placeholder">Chart Preview</div>
+                        </div>
+                    </div>
+
+                    <div class="holdings-card locked-card">
+                        <h2>Top Holdings</h2>
+                        <div class="holdings-content">
+                            <div class="locked-chart-placeholder">Holdings Chart</div>
+                        </div>
+                    </div>
+
+                    <div class="trades-card locked-card">
+                        <h2>Recent Trades</h2>
+                        <div class="trades-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Ticker</th>
+                                        <th>Amount</th>
+                                        <th>Share</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td colspan="4" class="locked-text">---</td></tr>
+                                    <tr><td colspan="4" class="locked-text">---</td></tr>
+                                    <tr><td colspan="4" class="locked-text">---</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize Lucide icons
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+
+        function copyCaToClipboard() {
+            const ca = 'TBA';
+            navigator.clipboard.writeText(ca).then(function() {
+                const btn = document.querySelector('.ca-button');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<span style="color: #10b981;">✓ Copied!</span>';
+                setTimeout(function() {
+                    btn.innerHTML = originalText;
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
+
