@@ -394,7 +394,6 @@ function initMobileMenu() {
 // Initialize all enhancements
 document.addEventListener('DOMContentLoaded', function() {
     initSearchAndFilter();
-    initDarkModeToggle();
     initComparisonTools();
     initMobileMenu();
     setUpdateTime();
