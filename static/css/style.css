@@ -2737,6 +2737,7 @@ html {
 .search-filter-bar {
     display: flex;
     gap: 0.75rem;
+    margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     flex-wrap: wrap;
     align-items: stretch;
@@ -2968,7 +2969,7 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
     flex-wrap: wrap;
     gap: 1rem;
 }
