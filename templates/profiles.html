@@ -206,7 +206,7 @@
                 <!-- Eric Trump - Coming Soon -->
                 <a href="/profile/eric-trump" class="profile-card profile-card-coming-soon" data-profile-id="eric-trump" title="Coming Soon">
                     <div class="profile-card-image">
-                        <img src="https://static.wixstatic.com/media/e2da02_3d8f8cb169314f309d0213c8c67478e1~mv2.png" alt="Eric Trump">
+                        <img src="https://static.wixstatic.com/media/e2da02_de23f5c5eba9443587397fa27db0580c~mv2.png" alt="Eric Trump">
                     </div>
                     <div class="profile-card-content">
                         <h3>Eric Trump</h3>
@@ -302,7 +302,18 @@
         function copyCaToClipboard() {
             const caValue = document.querySelector('.ca-value').textContent;
             navigator.clipboard.writeText(caValue).then(() => {
-                alert('Contract Address copied to clipboard!');
+                // Show success feedback without alert
+                const btn = document.querySelector('.ca-button');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<span class="ca-label">CA:</span><span style="color: #10b981;">✓ Copied!</span>';
+                btn.style.transform = 'scale(1.1)';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.transform = 'scale(1)';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
             });
         }
     </script>

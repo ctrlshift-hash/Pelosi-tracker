@@ -422,7 +422,7 @@ def profile_locked(profile_id):
                 'avg_filing_frequency': None,
                 'time_since_last_filing': None
             },
-            'image_url': 'https://static.wixstatic.com/media/e2da02_3d8f8cb169314f309d0213c8c67478e1~mv2.png'
+            'image_url': 'https://static.wixstatic.com/media/e2da02_de23f5c5eba9443587397fa27db0580c~mv2.png'
         }
     }
     

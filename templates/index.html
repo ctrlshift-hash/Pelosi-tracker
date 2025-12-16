@@ -340,10 +340,10 @@
         function copyCaToClipboard() {
             const ca = 'TBA'; // Replace with actual contract address when available
             navigator.clipboard.writeText(ca).then(function() {
-                // Show success feedback
+                // Show success feedback without alert
                 const btn = document.querySelector('.ca-button');
                 const originalText = btn.innerHTML;
-                btn.innerHTML = '<span style="color: #10b981;">✓ Copied!</span>';
+                btn.innerHTML = '<span class="ca-label">CA:</span><span style="color: #10b981;">✓ Copied!</span>';
                 btn.style.transform = 'scale(1.1)';
                 
                 setTimeout(function() {
@@ -352,7 +352,6 @@
                 }, 2000);
             }).catch(function(err) {
                 console.error('Failed to copy:', err);
-                alert('Failed to copy to clipboard');
             });
         }
 
