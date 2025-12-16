@@ -3443,26 +3443,26 @@ body.profile-locked {
     animation: fadeIn 0.5s ease;
 }
 
-.locked-content {
+.locked-overlay .locked-content {
     text-align: center;
     color: #fff;
     padding: 2rem;
     max-width: 500px;
 }
 
-.locked-content i {
+.locked-overlay .locked-content i {
     margin-bottom: 1.5rem;
     animation: pulse 2s ease-in-out infinite;
 }
 
-.locked-content h2 {
+.locked-overlay .locked-content h2 {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
     color: #fbbf24;
 }
 
-.locked-content p {
+.locked-overlay .locked-content p {
     font-size: 1.1rem;
     color: #aaa;
     margin-bottom: 2rem;
@@ -3496,12 +3496,12 @@ body.profile-locked {
     user-select: none;
 }
 
-.profile-locked .profile-card,
-.profile-locked .info-card,
-.profile-locked .portfolio-overview-card,
-.profile-locked .portfolio-performance-card,
-.profile-locked .holdings-card,
-.profile-locked .trades-card {
+.profile-locked section.locked-content .profile-card,
+.profile-locked section.locked-content .info-card,
+.profile-locked section.locked-content .portfolio-overview-card,
+.profile-locked section.locked-content .portfolio-performance-card,
+.profile-locked section.locked-content .holdings-card,
+.profile-locked section.locked-content .trades-card {
     opacity: 0.25;
     filter: blur(3px);
     pointer-events: none;
