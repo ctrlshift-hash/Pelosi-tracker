@@ -631,6 +631,7 @@ html {
     justify-content: space-between;
     align-items: center;
     position: relative;
+    background: transparent;
 }
 
 .nav-brand {
