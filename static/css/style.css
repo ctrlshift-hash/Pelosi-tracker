@@ -675,8 +675,8 @@ html {
     padding: 8px 16px;
     border-radius: 8px;
     position: relative;
-    border: 1px solid rgba(59, 130, 246, 0.3);
-    background: rgba(59, 130, 246, 0.05);
+    border: 1px solid rgba(59, 130, 246, 0.5);
+    background: rgba(59, 130, 246, 0.2);
 }
 
 .nav-links a::after {
@@ -693,8 +693,8 @@ html {
 
 .nav-links a:hover {
     color: #fff;
-    background: rgba(59, 130, 246, 0.15);
-    border-color: rgba(59, 130, 246, 0.6);
+    background: rgba(59, 130, 246, 0.35);
+    border-color: rgba(59, 130, 246, 0.8);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
@@ -707,7 +707,7 @@ html {
 .nav-links a.active {
     color: #fff;
     border-color: #10b981;
-    background: rgba(16, 185, 129, 0.1);
+    background: rgba(16, 185, 129, 0.25);
 }
 
 /* Social Icons */
