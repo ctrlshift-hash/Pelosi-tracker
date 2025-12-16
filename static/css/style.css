@@ -1067,12 +1067,7 @@ html {
     font-weight: 700;
     line-height: 1.2;
     animation: fadeInUp 0.8s ease;
-    background: linear-gradient(135deg, #fff, #3b82f6, #6366f1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-size: 200% 200%;
-    animation: fadeInUp 0.8s ease, gradientText 5s ease infinite;
+    color: #fff;
 }
 
 @keyframes gradientText {
