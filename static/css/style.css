@@ -171,14 +171,15 @@ html {
 
 /* Nancy Says Quote Box */
 .nancy-says-box {
-    background: linear-gradient(135deg, rgba(78, 123, 245, 0.1), rgba(59, 130, 246, 0.05));
-    border: 1px solid rgba(78, 123, 245, 0.3);
+    background: linear-gradient(135deg, rgba(20, 20, 40, 0.98), rgba(30, 30, 50, 0.95));
+    border: 1px solid rgba(59, 130, 246, 0.3);
     border-radius: 12px;
     padding: 20px 24px;
     margin: 30px 0;
     position: relative;
     overflow: hidden;
     animation: fadeInUp 0.6s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 .nancy-says-box::before {
