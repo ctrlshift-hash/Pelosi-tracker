@@ -50,7 +50,11 @@
             <div class="profile-card profile-card-small" style="background: rgb(20, 20, 40) !important; max-width: 650px !important; width: 650px !important; padding: 2rem !important; margin: 0 auto !important;">
                 <div class="profile-header">
                     <div class="profile-image">
+                        {% if image_url %}
+                        <img src="{{ image_url }}" alt="{{ name }}">
+                        {% else %}
                         <div class="locked-placeholder"></div>
+                        {% endif %}
                     </div>
                 </div>
                 

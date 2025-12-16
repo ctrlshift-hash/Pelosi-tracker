@@ -331,7 +331,8 @@ def profile_locked(profile_id):
                 'avg_reporting_time': 28,
                 'avg_filing_frequency': 62,
                 'time_since_last_filing': 45
-            }
+            },
+            'image_url': 'https://static.wixstatic.com/media/e2da02_6ce3f0fedeac4311982ea028e517202b~mv2.png'
         },
         'tommy-tuberville': {
             'name': 'Tommy Tuberville',
@@ -348,7 +349,8 @@ def profile_locked(profile_id):
                 'avg_reporting_time': 31,
                 'avg_filing_frequency': 68,
                 'time_since_last_filing': 52
-            }
+            },
+            'image_url': 'https://static.wixstatic.com/media/e2da02_1873027f391c40d3a890751b381b64a1~mv2.png'
         },
         'josh-gottheimer': {
             'name': 'Josh Gottheimer',
@@ -365,7 +367,8 @@ def profile_locked(profile_id):
                 'avg_reporting_time': 26,
                 'avg_filing_frequency': 58,
                 'time_since_last_filing': 41
-            }
+            },
+            'image_url': 'https://static.wixstatic.com/media/e2da02_e31408565d714a04a9c2cc567586ac86~mv2.png'
         },
         'dan-crenshaw': {
             'name': 'Dan Crenshaw',
@@ -382,7 +385,8 @@ def profile_locked(profile_id):
                 'avg_reporting_time': 29,
                 'avg_filing_frequency': 64,
                 'time_since_last_filing': 48
-            }
+            },
+            'image_url': 'https://static.wixstatic.com/media/e2da02_92039f4752cc427682ca9650cb0799c9~mv2.png'
         },
         'markwayne-mullin': {
             'name': 'Markwayne Mullin',
@@ -399,7 +403,8 @@ def profile_locked(profile_id):
                 'avg_reporting_time': 33,
                 'avg_filing_frequency': 71,
                 'time_since_last_filing': 55
-            }
+            },
+            'image_url': 'https://static.wixstatic.com/media/e2da02_7f5176bc04474974940b201de37151ec~mv2.png'
         },
         'eric-trump': {
             'name': 'Eric Trump',
@@ -416,7 +421,8 @@ def profile_locked(profile_id):
                 'avg_reporting_time': None,
                 'avg_filing_frequency': None,
                 'time_since_last_filing': None
-            }
+            },
+            'image_url': 'https://static.wixstatic.com/media/e2da02_3d8f8cb169314f309d0213c8c67478e1~mv2.png'
         }
     }
     
