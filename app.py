@@ -314,49 +314,79 @@ def profile_locked(profile_id):
     """Render locked profile page for coming soon profiles"""
     print(f"Locked profile route called for {profile_id}", flush=True)
     
-    # Profile information mapping
+    # Profile information mapping with full details
     profiles_info = {
         'rick-scott': {
             'name': 'Rick Scott',
             'title': 'Senator, Florida',
             'party': 'Republican',
             'badge_class': 'badge-red',
-            'district': 'Florida'
+            'district': 'Florida',
+            'role': 'Senator',
+            'years_in_office': '2019 - Present',
+            'age': '71 years',
+            'committees_link': 'https://www.scott.senate.gov/',
+            'biography': 'Richard Lynn Scott is an American businessman and politician serving as the junior United States Senator from Florida since 2019. A member of the Republican Party, he previously served as the 45th governor of Florida from 2011 to 2019. Before entering politics, Scott was a healthcare executive and co-founder of Columbia Hospital Corporation.'
         },
         'tommy-tuberville': {
             'name': 'Tommy Tuberville',
             'title': 'Senator, Alabama',
             'party': 'Republican',
             'badge_class': 'badge-red',
-            'district': 'Alabama'
+            'district': 'Alabama',
+            'role': 'Senator',
+            'years_in_office': '2021 - Present',
+            'age': '69 years',
+            'committees_link': 'https://www.tuberville.senate.gov/',
+            'biography': 'Thomas Hawley Tuberville is an American politician and former college football coach serving as the junior United States Senator from Alabama since 2021. A member of the Republican Party, he previously coached college football for over 40 years, including head coaching positions at Auburn University, Texas Tech University, and the University of Cincinnati.'
         },
         'josh-gottheimer': {
             'name': 'Josh Gottheimer',
             'title': 'Representative, New Jersey',
             'party': 'Democrat',
             'badge_class': 'badge-blue',
-            'district': 'District 5'
+            'district': 'District 5',
+            'role': 'Representative',
+            'years_in_office': '2017 - Present',
+            'age': '49 years',
+            'committees_link': 'https://gottheimer.house.gov/',
+            'biography': 'Joshua Gottheimer is an American politician serving as the U.S. Representative for New Jersey\'s 5th congressional district since 2017. A member of the Democratic Party, he previously worked as a speechwriter for President Bill Clinton and as a corporate attorney. Gottheimer is a member of the Problem Solvers Caucus and focuses on bipartisan solutions.'
         },
         'dan-crenshaw': {
             'name': 'Dan Crenshaw',
             'title': 'Representative, Texas',
             'party': 'Republican',
             'badge_class': 'badge-red',
-            'district': 'District 2'
+            'district': 'District 2',
+            'role': 'Representative',
+            'years_in_office': '2019 - Present',
+            'age': '40 years',
+            'committees_link': 'https://crenshaw.house.gov/',
+            'biography': 'Daniel Reed Crenshaw is an American politician and former Navy SEAL serving as the U.S. Representative for Texas\'s 2nd congressional district since 2019. A member of the Republican Party, he served as a Navy SEAL officer for 10 years, completing multiple deployments to Iraq and Afghanistan. He lost his right eye in an IED explosion in Afghanistan in 2012.'
         },
         'markwayne-mullin': {
             'name': 'Markwayne Mullin',
             'title': 'Senator, Oklahoma',
             'party': 'Republican',
             'badge_class': 'badge-red',
-            'district': 'Oklahoma'
+            'district': 'Oklahoma',
+            'role': 'Senator',
+            'years_in_office': '2023 - Present',
+            'age': '46 years',
+            'committees_link': 'https://www.mullin.senate.gov/',
+            'biography': 'Markwayne Mullin is an American businessman and politician serving as the junior United States Senator from Oklahoma since 2023. A member of the Republican Party, he previously served as the U.S. Representative for Oklahoma\'s 2nd congressional district from 2013 to 2023. Before entering politics, Mullin owned and operated a plumbing business.'
         },
         'eric-trump': {
             'name': 'Eric Trump',
             'title': 'Businessman, New York',
             'party': 'Republican',
             'badge_class': 'badge-red',
-            'district': 'New York'
+            'district': 'New York',
+            'role': 'Businessman',
+            'years_in_office': 'N/A',
+            'age': '40 years',
+            'committees_link': None,
+            'biography': 'Eric Frederick Trump is an American businessman and the executive vice president of the Trump Organization. He is the third child of former President Donald Trump and his first wife, Ivana Trump. Eric has been involved in the family real estate business since a young age and currently oversees the company\'s development and acquisition operations.'
         }
     }
     
@@ -368,7 +398,12 @@ def profile_locked(profile_id):
             'title': 'Coming Soon',
             'party': 'Unknown',
             'badge_class': 'badge-gray',
-            'district': 'TBA'
+            'district': 'TBA',
+            'role': 'TBA',
+            'years_in_office': 'TBA',
+            'age': 'TBA',
+            'committees_link': None,
+            'biography': 'Biography information coming soon.'
         }
     
     return render_template('profile_locked.html', **profile_info)

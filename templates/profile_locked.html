@@ -9,24 +9,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="profile-locked">
+<body>
     <!-- Background Video -->
     <video id="background-video" autoplay muted loop playsinline preload="auto">
         <source src="https://pub-de5cfab5b69047b7ba92c036589e9045.r2.dev/Galaxy%20Free%20Background%20Video%2C%20Motion%20Graphics%2C%20No%20Copyright%20Background%20%20All%20Background%20Video%20-%20All%20Background%20Videos%20(1080p%2C%20h264%2C%20youtube).mp4" type="video/mp4">
     </video>
-    
-    <!-- Coming Soon Overlay -->
-    <div class="locked-overlay">
-        <div class="locked-content">
-            <i data-lucide="lock" style="width: 64px; height: 64px; color: #fbbf24;"></i>
-            <h2>Coming Soon</h2>
-            <p>This profile is currently being prepared. Check back soon for detailed portfolio data and trading insights!</p>
-            <a href="/profiles" class="btn-back-to-profiles">
-                <i data-lucide="arrow-left" style="width: 20px; height: 20px;"></i>
-                Back to Profiles
-            </a>
-        </div>
-    </div>
     
     <!-- Navigation -->
     <nav class="navbar">
@@ -57,8 +44,8 @@
         </div>
     </nav>
 
-    <!-- Profile Header (Greyed Out) -->
-    <section class="profile-section locked-content">
+    <!-- Profile Header -->
+    <section class="profile-section">
         <div class="container">
             <div class="profile-card profile-card-small" style="background: rgb(20, 20, 40) !important; max-width: 650px !important; width: 650px !important; padding: 2rem !important; margin: 0 auto !important;">
                 <div class="profile-header">
@@ -81,89 +68,126 @@
                 <div class="profile-stats-grid">
                     <div class="profile-stat">
                         <div class="profile-stat-label">Total Value</div>
-                        <div class="profile-stat-value locked-stat">$XX.XXM</div>
+                        <div class="profile-stat-value locked-financial">$XX.XXM</div>
                     </div>
                     <div class="profile-stat">
                         <div class="profile-stat-label">Performance</div>
-                        <div class="profile-stat-value locked-stat">+XX.X%</div>
+                        <div class="profile-stat-value locked-financial">+XX.X%</div>
                     </div>
                     <div class="profile-stat">
                         <div class="profile-stat-label">Holdings</div>
-                        <div class="profile-stat-value locked-stat">XX</div>
+                        <div class="profile-stat-value locked-financial">XX</div>
                     </div>
                     <div class="profile-stat">
                         <div class="profile-stat-label">Updated</div>
-                        <div class="profile-stat-value small locked-stat">TBA</div>
+                        <div class="profile-stat-value small locked-financial">TBA</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Main Content Grid (Greyed Out) -->
-    <section class="profile-content-section locked-content">
+    <!-- Main Content Grid -->
+    <section class="profile-content-section">
         <div class="container">
             <div class="profile-grid">
                 <!-- Left Column -->
                 <div class="profile-left-column">
-                    <div class="info-card locked-card">
+                    <!-- Politician Info - VISIBLE -->
+                    <div class="info-card">
                         <h3>Politician Info</h3>
                         <div class="info-item">
                             <span class="info-label">Role:</span>
-                            <span class="info-value locked-text">---</span>
+                            <span class="info-value">{{ role }}</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Years in Office:</span>
-                            <span class="info-value locked-text">---</span>
+                            <span class="info-value">{{ years_in_office }}</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Age:</span>
-                            <span class="info-value locked-text">---</span>
+                            <span class="info-value">{{ age }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Committees:</span>
+                            {% if committees_link %}
+                            <a href="{{ committees_link }}" class="info-link" target="_blank">View Committees</a>
+                            {% else %}
+                            <span class="info-value">TBA</span>
+                            {% endif %}
                         </div>
                     </div>
 
-                    <div class="info-card locked-card">
+                    <!-- Filing Statistics - LOCKED -->
+                    <div class="info-card">
                         <h3>Filing Statistics</h3>
                         <div class="info-item">
                             <span class="info-label">Avg. Reporting Time:</span>
-                            <span class="info-value locked-text">---</span>
+                            <span class="info-value locked-financial">---</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Avg. Filing Frequency:</span>
-                            <span class="info-value locked-text">---</span>
+                            <span class="info-value locked-financial">---</span>
                         </div>
+                        <div class="info-item">
+                            <span class="info-label">Time Since Last Filing:</span>
+                            <span class="info-value locked-financial">---</span>
+                        </div>
+                    </div>
+
+                    <!-- Biography - VISIBLE -->
+                    <div class="info-card">
+                        <h3>Biography</h3>
+                        <p>{{ biography }}</p>
                     </div>
                 </div>
 
                 <!-- Right Column -->
                 <div class="profile-right-column">
-                    <div class="portfolio-overview-card locked-card">
+                    <!-- Portfolio Overview - LOCKED -->
+                    <div class="portfolio-overview-card locked-financial-card">
                         <div class="card-header">
                             <h2>Portfolio Overview</h2>
+                            <button class="btn-secondary">Summary</button>
                         </div>
                         <div class="portfolio-value">
                             <div class="value-label">Total Value</div>
-                            <div class="value-amount locked-text">US$---</div>
+                            <div class="value-amount locked-financial">US$---</div>
+                        </div>
+                        <div class="monthly-change">
+                            <span class="change-label">Monthly Change</span>
+                            <span class="change-value locked-financial">---</span>
                         </div>
                     </div>
 
-                    <div class="portfolio-performance-card locked-card">
+                    <!-- Portfolio Performance - LOCKED -->
+                    <div class="portfolio-performance-card locked-financial-card">
                         <div class="card-header">
                             <h2>Portfolio Performance</h2>
+                            <div class="performance-badge locked-financial">---</div>
+                        </div>
+                        <div class="time-range-selector">
+                            <button class="time-btn" data-range="1M">1M</button>
+                            <button class="time-btn" data-range="3M">3M</button>
+                            <button class="time-btn" data-range="6M">6M</button>
+                            <button class="time-btn" data-range="1Y">1Y</button>
+                            <button class="time-btn active" data-range="all">All</button>
                         </div>
                         <div class="chart-container locked-chart">
                             <div class="locked-chart-placeholder">Chart Preview</div>
                         </div>
                     </div>
 
-                    <div class="holdings-card locked-card">
+                    <!-- Top Holdings - LOCKED -->
+                    <div class="holdings-card locked-financial-card">
                         <h2>Top Holdings</h2>
                         <div class="holdings-content">
                             <div class="locked-chart-placeholder">Holdings Chart</div>
                         </div>
                     </div>
 
-                    <div class="trades-card locked-card">
+                    <!-- Recent Trades - LOCKED -->
+                    <div class="trades-card locked-financial-card">
                         <h2>Recent Trades</h2>
                         <div class="trades-table">
                             <table>
@@ -176,11 +200,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td colspan="4" class="locked-text">---</td></tr>
-                                    <tr><td colspan="4" class="locked-text">---</td></tr>
-                                    <tr><td colspan="4" class="locked-text">---</td></tr>
+                                    <tr><td colspan="4" class="locked-financial">---</td></tr>
+                                    <tr><td colspan="4" class="locked-financial">---</td></tr>
+                                    <tr><td colspan="4" class="locked-financial">---</td></tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+
+                    <!-- Sector Allocation - LOCKED -->
+                    <div class="sector-card locked-financial-card">
+                        <div class="card-header">
+                            <h2>Sector Allocation</h2>
+                            <button class="btn-secondary">Asset Distribution</button>
+                        </div>
+                        <div class="sector-list">
+                            <div class="locked-financial">---</div>
                         </div>
                     </div>
                 </div>
@@ -188,6 +223,13 @@
         </div>
     </section>
 
+    <!-- Coming Soon Banner -->
+    <div class="coming-soon-banner">
+        <i data-lucide="lock" style="width: 24px; height: 24px;"></i>
+        <span>Portfolio data coming soon - Basic profile information is available below</span>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
     <script>
         // Initialize Lucide icons
         document.addEventListener('DOMContentLoaded', function() {
@@ -210,4 +252,3 @@
     </script>
 </body>
 </html>
-

@@ -3423,95 +3423,32 @@ body.light-mode .profile-card {
     }
 }
 
-/* Locked Profile Styles */
-body.profile-locked {
+/* Locked Profile Styles - Only Financial Data is Blurred */
+.locked-financial {
+    color: #666 !important;
+    filter: blur(4px);
+    user-select: none;
+    pointer-events: none;
     position: relative;
 }
 
-.locked-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 0.5s ease;
-}
-
-.locked-overlay .locked-content {
-    text-align: center;
-    color: #fff;
-    padding: 2rem;
-    max-width: 500px;
-}
-
-.locked-overlay .locked-content i {
-    margin-bottom: 1.5rem;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-.locked-overlay .locked-content h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #fbbf24;
-}
-
-.locked-overlay .locked-content p {
-    font-size: 1.1rem;
-    color: #aaa;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-}
-
-.btn-back-to-profiles {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 12px 24px;
-    background: rgba(59, 130, 246, 0.2);
-    border: 1px solid rgba(59, 130, 246, 0.5);
-    border-radius: 8px;
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.btn-back-to-profiles:hover {
-    background: rgba(59, 130, 246, 0.3);
-    border-color: rgba(59, 130, 246, 0.8);
-    transform: translateY(-2px);
-}
-
-.locked-content-section {
-    opacity: 0.3;
-    filter: blur(2px);
-    pointer-events: none;
-    user-select: none;
-}
-
-.profile-locked section.locked-content .profile-card,
-.profile-locked section.locked-content .info-card,
-.profile-locked section.locked-content .portfolio-overview-card,
-.profile-locked section.locked-content .portfolio-performance-card,
-.profile-locked section.locked-content .holdings-card,
-.profile-locked section.locked-content .trades-card {
-    opacity: 0.25;
+.locked-financial-card {
+    opacity: 0.4;
     filter: blur(3px);
     pointer-events: none;
+    position: relative;
 }
 
-.locked-stat,
-.locked-text {
-    color: #666 !important;
-    filter: blur(2px);
-    user-select: none;
+.locked-financial-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    border-radius: 8px;
 }
 
 .locked-placeholder {
@@ -3529,7 +3466,8 @@ body.profile-locked {
     justify-content: center;
     background: rgba(20, 20, 40, 0.3);
     border-radius: 8px;
-    opacity: 0.3;
+    opacity: 0.4;
+    filter: blur(3px);
 }
 
 .locked-chart-placeholder {
@@ -3537,25 +3475,40 @@ body.profile-locked {
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 2px;
+    filter: blur(2px);
 }
 
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 0.7;
-        transform: scale(1.1);
-    }
+.coming-soon-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(251, 191, 36, 0.15);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    border-radius: 8px;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #fbbf24;
+    font-size: 0.9rem;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    animation: slideUp 0.5s ease;
 }
 
-@keyframes fadeIn {
+.coming-soon-banner i {
+    flex-shrink: 0;
+}
+
+@keyframes slideUp {
     from {
         opacity: 0;
+        transform: translateX(-50%) translateY(20px);
     }
     to {
         opacity: 1;
+        transform: translateX(-50%) translateY(0);
     }
 }
 
