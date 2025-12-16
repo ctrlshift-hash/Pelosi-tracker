@@ -3374,16 +3374,17 @@ body.light-mode .profile-card {
 }
 
 .profile-card-coming-soon {
-    opacity: 0.6;
-    cursor: not-allowed;
-    pointer-events: none;
+    opacity: 0.7;
+    cursor: pointer;
+    pointer-events: auto;
     border-color: rgba(255, 255, 255, 0.1);
 }
 
 .profile-card-coming-soon:hover {
-    transform: none;
-    box-shadow: none;
-    border-color: rgba(255, 255, 255, 0.1);
+    opacity: 1;
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(251, 191, 36, 0.2), 0 0 60px rgba(251, 191, 36, 0.1);
+    border-color: rgba(251, 191, 36, 0.4);
 }
 
 .profile-card-coming-soon .profile-card-image {

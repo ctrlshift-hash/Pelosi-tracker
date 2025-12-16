@@ -79,7 +79,7 @@
                 </a>
                 
                 <!-- Rick Scott - Coming Soon -->
-                <div class="profile-card profile-card-coming-soon">
+                <div class="profile-card profile-card-coming-soon" data-profile-id="rick-scott">
                     <div class="profile-card-image">
                         <div class="coming-soon-overlay">
                             <i data-lucide="clock" style="width: 32px; height: 32px;"></i>
@@ -95,18 +95,18 @@
                         <div class="profile-card-stats">
                             <div class="profile-card-stat">
                                 <span class="stat-label">Portfolio Value</span>
-                                <span class="stat-value">TBA</span>
+                                <span class="stat-value" data-stat="portfolio">Loading...</span>
                             </div>
                             <div class="profile-card-stat">
                                 <span class="stat-label">Performance</span>
-                                <span class="stat-value">TBA</span>
+                                <span class="stat-value" data-stat="performance">Loading...</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Tommy Tuberville - Coming Soon -->
-                <div class="profile-card profile-card-coming-soon">
+                <div class="profile-card profile-card-coming-soon" data-profile-id="tommy-tuberville">
                     <div class="profile-card-image">
                         <div class="coming-soon-overlay">
                             <i data-lucide="clock" style="width: 32px; height: 32px;"></i>
@@ -122,18 +122,18 @@
                         <div class="profile-card-stats">
                             <div class="profile-card-stat">
                                 <span class="stat-label">Portfolio Value</span>
-                                <span class="stat-value">TBA</span>
+                                <span class="stat-value" data-stat="portfolio">Loading...</span>
                             </div>
                             <div class="profile-card-stat">
                                 <span class="stat-label">Performance</span>
-                                <span class="stat-value">TBA</span>
+                                <span class="stat-value" data-stat="performance">Loading...</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Josh Gottheimer - Coming Soon -->
-                <div class="profile-card profile-card-coming-soon">
+                <div class="profile-card profile-card-coming-soon" data-profile-id="josh-gottheimer">
                     <div class="profile-card-image">
                         <div class="coming-soon-overlay">
                             <i data-lucide="clock" style="width: 32px; height: 32px;"></i>
@@ -149,18 +149,18 @@
                         <div class="profile-card-stats">
                             <div class="profile-card-stat">
                                 <span class="stat-label">Portfolio Value</span>
-                                <span class="stat-value">TBA</span>
+                                <span class="stat-value" data-stat="portfolio">Loading...</span>
                             </div>
                             <div class="profile-card-stat">
                                 <span class="stat-label">Performance</span>
-                                <span class="stat-value">TBA</span>
+                                <span class="stat-value" data-stat="performance">Loading...</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Dan Crenshaw - Coming Soon -->
-                <div class="profile-card profile-card-coming-soon">
+                <div class="profile-card profile-card-coming-soon" data-profile-id="dan-crenshaw">
                     <div class="profile-card-image">
                         <div class="coming-soon-overlay">
                             <i data-lucide="clock" style="width: 32px; height: 32px;"></i>
@@ -176,18 +176,18 @@
                         <div class="profile-card-stats">
                             <div class="profile-card-stat">
                                 <span class="stat-label">Portfolio Value</span>
-                                <span class="stat-value">TBA</span>
+                                <span class="stat-value" data-stat="portfolio">Loading...</span>
                             </div>
                             <div class="profile-card-stat">
                                 <span class="stat-label">Performance</span>
-                                <span class="stat-value">TBA</span>
+                                <span class="stat-value" data-stat="performance">Loading...</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Markwayne Mullin - Coming Soon -->
-                <div class="profile-card profile-card-coming-soon">
+                <div class="profile-card profile-card-coming-soon" data-profile-id="markwayne-mullin">
                     <div class="profile-card-image">
                         <div class="coming-soon-overlay">
                             <i data-lucide="clock" style="width: 32px; height: 32px;"></i>
@@ -203,11 +203,38 @@
                         <div class="profile-card-stats">
                             <div class="profile-card-stat">
                                 <span class="stat-label">Portfolio Value</span>
-                                <span class="stat-value">TBA</span>
+                                <span class="stat-value" data-stat="portfolio">Loading...</span>
                             </div>
                             <div class="profile-card-stat">
                                 <span class="stat-label">Performance</span>
-                                <span class="stat-value">TBA</span>
+                                <span class="stat-value" data-stat="performance">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Eric Trump - Coming Soon -->
+                <div class="profile-card profile-card-coming-soon" data-profile-id="eric-trump">
+                    <div class="profile-card-image">
+                        <div class="coming-soon-overlay">
+                            <i data-lucide="clock" style="width: 32px; height: 32px;"></i>
+                        </div>
+                    </div>
+                    <div class="profile-card-content">
+                        <h3>Eric Trump</h3>
+                        <p class="profile-card-title">Businessman, New York</p>
+                        <div class="profile-card-badges">
+                            <span class="badge badge-red">Republican</span>
+                            <span class="badge badge-coming-soon">Coming Soon</span>
+                        </div>
+                        <div class="profile-card-stats">
+                            <div class="profile-card-stat">
+                                <span class="stat-label">Portfolio Value</span>
+                                <span class="stat-value" data-stat="portfolio">Loading...</span>
+                            </div>
+                            <div class="profile-card-stat">
+                                <span class="stat-label">Performance</span>
+                                <span class="stat-value" data-stat="performance">Loading...</span>
                             </div>
                         </div>
                     </div>
@@ -219,7 +246,7 @@
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
     <script src="{{ url_for('static', filename='js/enhancements.js') }}"></script>
     <script>
-        // Initialize Lucide icons
+        // Initialize Lucide icons and load profile data
         document.addEventListener('DOMContentLoaded', function() {
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
@@ -246,6 +273,41 @@
                     }
                 })
                 .catch(error => console.error('Error fetching portfolio data:', error));
+            
+            // Fetch and update stats for all coming soon profiles
+            const comingSoonCards = document.querySelectorAll('.profile-card-coming-soon[data-profile-id]');
+            comingSoonCards.forEach(card => {
+                const profileId = card.getAttribute('data-profile-id');
+                if (profileId) {
+                    fetch(`/api/portfolio/${profileId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.performance) {
+                                const portfolioValue = card.querySelector('[data-stat="portfolio"]');
+                                if (portfolioValue && data.performance.total_invested) {
+                                    const invested = data.performance.total_invested;
+                                    portfolioValue.textContent = `$${(invested / 1000000).toFixed(2)}M`;
+                                }
+                                
+                                const performance = card.querySelector('[data-stat="performance"]');
+                                if (performance && data.performance.performance_percent !== undefined) {
+                                    const perf = data.performance.performance_percent;
+                                    performance.textContent = `${perf >= 0 ? '+' : ''}${perf.toFixed(1)}%`;
+                                    performance.classList.remove('positive', 'negative');
+                                    performance.classList.add(perf >= 0 ? 'positive' : 'negative');
+                                }
+                            }
+                        })
+                        .catch(error => {
+                            console.error(`Error fetching data for ${profileId}:`, error);
+                            // Set to TBA if error
+                            const portfolioValue = card.querySelector('[data-stat="portfolio"]');
+                            const performance = card.querySelector('[data-stat="performance"]');
+                            if (portfolioValue) portfolioValue.textContent = 'TBA';
+                            if (performance) performance.textContent = 'TBA';
+                        });
+                }
+            });
         });
         
         // Copy CA function

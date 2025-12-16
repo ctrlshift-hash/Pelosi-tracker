@@ -319,6 +319,116 @@ def get_portfolio():
     print("Portfolio API called - returning real data", flush=True)
     return jsonify(portfolio_data)
 
+@app.route('/api/portfolio/<profile_id>')
+def get_profile_portfolio(profile_id):
+    """Get portfolio data for a specific profile"""
+    print(f"Profile portfolio API called for {profile_id}", flush=True)
+    
+    # Mock data for other profiles (using similar structure to Nancy)
+    profiles_data = {
+        'nancy': portfolio_data,
+        'rick-scott': {
+            'holdings': [
+                {'ticker': 'AAPL', 'last_price': 250.35, 'price_display': '$250.35', 'weight': 22.0, 'weight_display': '22%'},
+                {'ticker': 'MSFT', 'last_price': 445.20, 'price_display': '$445.20', 'weight': 18.0, 'weight_display': '18%'},
+                {'ticker': 'GOOGL', 'last_price': 189.50, 'price_display': '$189.50', 'weight': 15.0, 'weight_display': '15%'},
+                {'ticker': 'AMZN', 'last_price': 230.75, 'price_display': '$230.75', 'weight': 12.0, 'weight_display': '12%'},
+                {'ticker': 'TSLA', 'last_price': 412.80, 'price_display': '$412.80', 'weight': 10.0, 'weight_display': '10%'},
+            ],
+            'performance': {
+                'performance_percent': 28.5,
+                'total_invested': 95000000
+            },
+            'stats': {
+                'holdings_count': 8,
+                'copiers': 8234
+            }
+        },
+        'tommy-tuberville': {
+            'holdings': [
+                {'ticker': 'NVDA', 'last_price': 145.89, 'price_display': '$145.89', 'weight': 25.0, 'weight_display': '25%'},
+                {'ticker': 'AMD', 'last_price': 125.30, 'price_display': '$125.30', 'weight': 20.0, 'weight_display': '20%'},
+                {'ticker': 'AAPL', 'last_price': 250.35, 'price_display': '$250.35', 'weight': 15.0, 'weight_display': '15%'},
+                {'ticker': 'MSFT', 'last_price': 445.20, 'price_display': '$445.20', 'weight': 12.0, 'weight_display': '12%'},
+            ],
+            'performance': {
+                'performance_percent': 32.0,
+                'total_invested': 72000000
+            },
+            'stats': {
+                'holdings_count': 6,
+                'copiers': 5123
+            }
+        },
+        'josh-gottheimer': {
+            'holdings': [
+                {'ticker': 'GOOGL', 'last_price': 189.50, 'price_display': '$189.50', 'weight': 20.0, 'weight_display': '20%'},
+                {'ticker': 'META', 'last_price': 638.25, 'price_display': '$638.25', 'weight': 18.0, 'weight_display': '18%'},
+                {'ticker': 'AAPL', 'last_price': 250.35, 'price_display': '$250.35', 'weight': 15.0, 'weight_display': '15%'},
+                {'ticker': 'MSFT', 'last_price': 445.20, 'price_display': '$445.20', 'weight': 14.0, 'weight_display': '14%'},
+            ],
+            'performance': {
+                'performance_percent': 25.8,
+                'total_invested': 68000000
+            },
+            'stats': {
+                'holdings_count': 7,
+                'copiers': 4567
+            }
+        },
+        'dan-crenshaw': {
+            'holdings': [
+                {'ticker': 'NVDA', 'last_price': 145.89, 'price_display': '$145.89', 'weight': 28.0, 'weight_display': '28%'},
+                {'ticker': 'TSLA', 'last_price': 412.80, 'price_display': '$412.80', 'weight': 22.0, 'weight_display': '22%'},
+                {'ticker': 'AAPL', 'last_price': 250.35, 'price_display': '$250.35', 'weight': 16.0, 'weight_display': '16%'},
+            ],
+            'performance': {
+                'performance_percent': 35.2,
+                'total_invested': 85000000
+            },
+            'stats': {
+                'holdings_count': 5,
+                'copiers': 6789
+            }
+        },
+        'markwayne-mullin': {
+            'holdings': [
+                {'ticker': 'XOM', 'last_price': 112.45, 'price_display': '$112.45', 'weight': 30.0, 'weight_display': '30%'},
+                {'ticker': 'CVX', 'last_price': 145.20, 'price_display': '$145.20', 'weight': 25.0, 'weight_display': '25%'},
+                {'ticker': 'AAPL', 'last_price': 250.35, 'price_display': '$250.35', 'weight': 15.0, 'weight_display': '15%'},
+            ],
+            'performance': {
+                'performance_percent': 18.5,
+                'total_invested': 55000000
+            },
+            'stats': {
+                'holdings_count': 6,
+                'copiers': 3456
+            }
+        },
+        'eric-trump': {
+            'holdings': [
+                {'ticker': 'DJT', 'last_price': 45.20, 'price_display': '$45.20', 'weight': 35.0, 'weight_display': '35%'},
+                {'ticker': 'AAPL', 'last_price': 250.35, 'price_display': '$250.35', 'weight': 20.0, 'weight_display': '20%'},
+                {'ticker': 'MSFT', 'last_price': 445.20, 'price_display': '$445.20', 'weight': 15.0, 'weight_display': '15%'},
+            ],
+            'performance': {
+                'performance_percent': 22.3,
+                'total_invested': 42000000
+            },
+            'stats': {
+                'holdings_count': 4,
+                'copiers': 2890
+            }
+        }
+    }
+    
+    profile_data = profiles_data.get(profile_id.lower())
+    if profile_data:
+        return jsonify(profile_data)
+    else:
+        return jsonify({'error': 'Profile not found'}), 404
+
 @app.route('/api/update')
 def force_update():
     print("Force update called", flush=True)
