@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nancy Pelosi Portfolio Tracker</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <!-- Background Video -->
@@ -23,6 +24,9 @@
                 <a href="#" onclick="openAboutModal(); return false;">About</a>
             </div>
             <div class="nav-social">
+                <button id="dark-mode-toggle" class="dark-mode-toggle" title="Toggle theme">
+                    <i data-lucide="moon"></i>
+                </button>
                 <a href="https://x.com/home" target="_blank" class="social-icon" title="Follow on X">
                     <img src="https://static.wixstatic.com/media/e2da02_75efd7a093fd4113a9662b914a541af9~mv2.jpg" alt="X/Twitter">
                 </a>
@@ -53,14 +57,18 @@
             <div class="hero-stats-combined">
                 <div class="stats-row">
                     <div class="stat-item">
-                        <div class="stat-icon-small">👥</div>
+                        <div class="stat-icon-small">
+                            <i data-lucide="users" style="width: 2rem; height: 2rem;"></i>
+                        </div>
                         <div class="stat-content">
                             <div class="stat-label-small">TOTAL COPIERS</div>
                             <div class="stat-value-large" id="copiers-stat">14,973</div>
                         </div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-icon-small">💰</div>
+                        <div class="stat-icon-small">
+                            <i data-lucide="dollar-sign" style="width: 2rem; height: 2rem;"></i>
+                        </div>
                         <div class="stat-content">
                             <div class="stat-label-small">ESTIMATED TOTAL INVESTED</div>
                             <div class="stat-value-large" id="invested-stat">$31,506,112</div>
@@ -70,7 +78,8 @@
                 <div class="stats-footer">
                     <p class="stats-disclaimer">Estimate based on average copier allocation of $2,104.20 across connected platforms.</p>
                     <a href="/profile" class="btn-view-portfolio">
-                        <span class="icon">👤</span> View Pelosi portfolio
+                        <i data-lucide="user" style="width: 1.1rem; height: 1.1rem;"></i>
+                        <span>View Pelosi portfolio</span>
                     </a>
                 </div>
             </div>
@@ -82,7 +91,7 @@
         <div class="container">
             <div class="nancy-says-box" id="nancy-says-box">
                 <div class="nancy-says-header">
-                    <span class="nancy-says-icon">💬</span>
+                    <i data-lucide="message-square" class="nancy-says-icon" style="width: 24px; height: 24px;"></i>
                     <span class="nancy-says-title">Nancy Says</span>
                 </div>
                 <div class="nancy-says-quote" id="nancy-quote-text">
@@ -92,7 +101,8 @@
                     — Nancy Pelosi
                 </div>
                 <button class="nancy-says-refresh" onclick="loadNewQuote()">
-                    🔄 New Quote
+                    <i data-lucide="refresh-cw" style="width: 16px; height: 16px;"></i>
+                    <span>New Quote</span>
                 </button>
             </div>
         </div>
@@ -146,9 +156,33 @@
     <!-- Holdings Section -->
     <section class="holdings-section" id="holdings">
         <div class="container">
-            <div class="section-header">
-                <h2>Current Holdings</h2>
-                <p class="section-subtitle">Current stock holdings from Nancy Pelosi's portfolio, tracked in real-time</p>
+            <div class="section-header-with-actions">
+                <div>
+                    <h2>Current Holdings</h2>
+                    <p class="section-subtitle">Current stock holdings from Nancy Pelosi's portfolio, tracked in real-time</p>
+                </div>
+                <div class="section-actions">
+                    <span class="last-updated-indicator">
+                        <i data-lucide="clock"></i>
+                        <span>Just updated</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="search-filter-bar">
+                <div class="search-input-wrapper">
+                    <i data-lucide="search"></i>
+                    <input type="text" id="holdings-search" class="search-input" placeholder="Search by ticker...">
+                </div>
+                <select id="holdings-filter" class="filter-select">
+                    <option value="weight-desc">Sort: Weight (High to Low)</option>
+                    <option value="weight-asc">Sort: Weight (Low to High)</option>
+                    <option value="ticker-asc">Sort: Ticker (A-Z)</option>
+                </select>
+                <button class="export-btn" onclick="exportHoldings()">
+                    <i data-lucide="download"></i>
+                    <span>Export CSV</span>
+                </button>
             </div>
 
             <div class="holdings-table-wrapper">
@@ -173,13 +207,36 @@
     <!-- Trades Section -->
     <section class="trades-section" id="trades">
         <div class="container">
-            <div class="section-header">
-                <h2>Recent Trading Activity</h2>
-                <p class="section-subtitle">Track stock trades from congressional financial disclosures in real-time</p>
+            <div class="section-header-with-actions">
+                <div>
+                    <h2>Recent Trading Activity</h2>
+                    <p class="section-subtitle">Track stock trades from congressional financial disclosures in real-time</p>
+                </div>
+                <div class="section-actions">
+                    <button class="export-btn" onclick="exportTrades()">
+                        <i data-lucide="download"></i>
+                        <span>Export CSV</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="search-filter-bar">
+                <div class="search-input-wrapper">
+                    <i data-lucide="search"></i>
+                    <input type="text" id="trades-search" class="search-input" placeholder="Search by ticker or action...">
+                </div>
+                <select id="trades-filter" class="filter-select">
+                    <option value="all">All Actions</option>
+                    <option value="Purchase">Purchases Only</option>
+                    <option value="Sale">Sales Only</option>
+                </select>
             </div>
 
             <div class="trades-grid" id="trades-container">
-                <div class="loading">Loading recent trades...</div>
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <div class="loading">Loading recent trades...</div>
+                </div>
             </div>
         </div>
     </section>
@@ -242,6 +299,7 @@
     </div>
 
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/enhancements.js') }}"></script>
     <script>
         function openAboutModal() {
             document.getElementById('aboutModal').classList.add('active');
@@ -301,6 +359,10 @@
         // Load quote on page load
         document.addEventListener('DOMContentLoaded', function() {
             loadNewQuote();
+            // Initialize icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         });
     </script>
 </body>

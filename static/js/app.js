@@ -97,52 +97,104 @@ function updateUI(data) {
         }
     }
 
-    // Update holdings table
+    // Store holdings for filtering
     if (data.holdings && data.holdings.length > 0) {
+        window.allHoldings = data.holdings;
+        
         const tbody = document.getElementById('holdings-body');
         if (tbody) {
-            tbody.innerHTML = '';
+            // Show skeleton loader while processing
+            if (tbody.querySelector('.loading')) {
+                tbody.innerHTML = createSkeletonLoader('table-row', data.holdings.length);
+            }
             
-            data.holdings.forEach(holding => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td class="ticker"><a href="/stock/${holding.ticker}" style="color: inherit; text-decoration: none; font-weight: 700;">${holding.ticker}</a></td>
-                    <td class="price">${holding.price_display || `$${holding.last_price.toFixed(2)}`}</td>
-                    <td class="weight">${holding.weight_display || `${holding.weight.toFixed(1)}%`}</td>
-                `;
-                tbody.appendChild(row);
-            });
+            // Small delay for skeleton effect
+            setTimeout(() => {
+                tbody.innerHTML = '';
+                
+                data.holdings.forEach(holding => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="ticker"><a href="/stock/${holding.ticker}" style="color: inherit; text-decoration: none; font-weight: 700;">${holding.ticker}</a></td>
+                        <td class="price">${holding.price_display || `$${holding.last_price.toFixed(2)}`}</td>
+                        <td class="weight">${holding.weight_display || `${holding.weight.toFixed(1)}%`}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+                
+                // Update filter with stored data
+                if (typeof filterHoldings === 'function') {
+                    const searchInput = document.getElementById('holdings-search');
+                    const filterSelect = document.getElementById('holdings-filter');
+                    filterHoldings(searchInput?.value || '', filterSelect?.value || 'weight-desc');
+                }
+            }, 300);
         }
     }
 
-    // Update trades
+    // Store trades for filtering
     if (data.recent_trades && data.recent_trades.length > 0) {
+        const oldTrades = window.allTrades || [];
+        window.allTrades = data.recent_trades;
+        
         const tradesContainer = document.getElementById('trades-container');
         if (tradesContainer) {
-            tradesContainer.innerHTML = '';
+            // Show skeleton loader
+            if (tradesContainer.querySelector('.loading')) {
+                tradesContainer.innerHTML = createSkeletonLoader('card', Math.min(6, data.recent_trades.length));
+            }
             
-            data.recent_trades.forEach(trade => {
-                const tradeCard = document.createElement('div');
-                tradeCard.className = 'trade-card';
+            // Small delay for skeleton effect
+            setTimeout(() => {
+                // Check for new trades and show notifications
+                if (oldTrades.length > 0 && typeof checkForNewTrades === 'function') {
+                    checkForNewTrades(oldTrades, data.recent_trades);
+                }
                 
-                const actionClass = trade.action === 'Purchase' ? 'purchase' : trade.action === 'Sale' ? 'sale' : '';
-                const actionBadge = trade.action ? `<span class="action-badge ${actionClass}">${trade.action}</span>` : '';
-                const dateInfo = trade.date || trade.traded_date || '';
-                const amountInfo = trade.amount || '';
+                // Update with filtered data
+                if (typeof filterTrades === 'function') {
+                    const searchInput = document.getElementById('trades-search');
+                    const filterSelect = document.getElementById('trades-filter');
+                    filterTrades(searchInput?.value || '', filterSelect?.value || 'all');
+                } else {
+                    // Fallback to original rendering
+                    tradesContainer.innerHTML = '';
+                    data.recent_trades.forEach(trade => {
+                        const tradeCard = document.createElement('div');
+                        tradeCard.className = 'trade-card';
+                        
+                        const actionClass = trade.action === 'Purchase' ? 'purchase' : trade.action === 'Sale' ? 'sale' : '';
+                        const actionBadge = trade.action ? `<span class="action-badge ${actionClass}">${trade.action}</span>` : '';
+                        const dateInfo = trade.date || trade.traded_date || '';
+                        const amountInfo = trade.amount || '';
+                        const insight = typeof getTradeInsight === 'function' ? getTradeInsight(trade) : '';
+                        
+                        tradeCard.innerHTML = `
+                            <div class="trade-header">
+                                <span class="trade-ticker">${trade.ticker || 'N/A'}</span>
+                                ${actionBadge}
+                            </div>
+                            ${insight ? `<div class="trade-insight">${insight}</div>` : ''}
+                            <div class="trade-details">
+                                ${dateInfo ? `<div>Date: ${dateInfo}</div>` : ''}
+                                ${amountInfo ? `<div>Amount: ${amountInfo}</div>` : ''}
+                            </div>
+                        `;
+                        tradesContainer.appendChild(tradeCard);
+                    });
+                }
                 
-                tradeCard.innerHTML = `
-                    <div class="trade-header">
-                        <span class="trade-ticker">${trade.ticker || 'N/A'}</span>
-                        ${actionBadge}
-                    </div>
-                    <div class="trade-details">
-                        ${dateInfo ? `<div>Date: ${dateInfo}</div>` : ''}
-                        ${amountInfo ? `<div>Amount: ${amountInfo}</div>` : ''}
-                    </div>
-                `;
-                tradesContainer.appendChild(tradeCard);
-            });
+                // Update icons
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            }, 300);
         }
+    }
+    
+    // Update last update time
+    if (typeof setUpdateTime === 'function') {
+        setUpdateTime();
     }
 }
 
@@ -154,4 +206,33 @@ if (document.readyState === 'loading') {
 }
 
 // Auto-refresh every 5 minutes
-setInterval(fetchPortfolioData, 5 * 60 * 1000);
+setInterval(() => {
+    fetchPortfolioData();
+    if (typeof setUpdateTime === 'function') {
+        setUpdateTime();
+    }
+}, 5 * 60 * 1000);
+
+// Helper function for skeleton loaders (if not in enhancements.js)
+if (typeof createSkeletonLoader === 'undefined') {
+    window.createSkeletonLoader = function(type, count = 3) {
+        if (type === 'table-row') {
+            return Array(count).fill(0).map(() => `
+                <tr class="skeleton-row">
+                    <td><div class="skeleton skeleton-text" style="width: 60px;"></div></td>
+                    <td><div class="skeleton skeleton-text" style="width: 80px;"></div></td>
+                    <td><div class="skeleton skeleton-text" style="width: 50px;"></div></td>
+                </tr>
+            `).join('');
+        } else if (type === 'card') {
+            return Array(count).fill(0).map(() => `
+                <div class="trade-card skeleton-card">
+                    <div class="skeleton skeleton-text" style="width: 60%; height: 24px; margin-bottom: 12px;"></div>
+                    <div class="skeleton skeleton-text" style="width: 40%; height: 20px; margin-bottom: 8px;"></div>
+                    <div class="skeleton skeleton-text" style="width: 80%; height: 16px;"></div>
+                </div>
+            `).join('');
+        }
+        return '';
+    };
+}
