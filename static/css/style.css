@@ -584,15 +584,14 @@ html {
 
 /* Navbar */
 .navbar {
-    background: rgba(10, 10, 20, 0.8);
-    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+    background: transparent;
+    border-bottom: none;
     padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(20px) saturate(180%);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-    display: none;
+    backdrop-filter: none;
+    box-shadow: none;
 }
 
 /* Nancy Pelosi Side Image */
