@@ -366,8 +366,12 @@
             }
         }
 
-        // Hide loading screen function
+        // Hide loading screen function (only run once)
+        let loadingScreenHidden = false;
         function hideLoadingScreen() {
+            if (loadingScreenHidden) return; // Already hidden, don't run again
+            loadingScreenHidden = true;
+            
             const loadingScreen = document.getElementById('loading-screen');
             if (loadingScreen) {
                 loadingScreen.classList.add('hidden');
@@ -377,20 +381,31 @@
             }
         }
         
-        // Hide loading screen after page loads (minimum 3 seconds)
+        // Hide loading screen after page loads (minimum 3 seconds) - only on initial load
         const minLoadTime = 3000; // 3 seconds
         const startTime = Date.now();
         
         function checkAndHideLoading() {
+            if (loadingScreenHidden) return; // Already hidden
             const elapsed = Date.now() - startTime;
             const remaining = Math.max(0, minLoadTime - elapsed);
             setTimeout(hideLoadingScreen, remaining);
         }
         
-        if (document.readyState === 'complete') {
+        // Only show loading screen on initial page load, not on navigation
+        if (document.readyState === 'loading') {
+            // Page is still loading, wait for it
+            window.addEventListener('load', function() {
+                checkAndHideLoading();
+            }, { once: true });
+        } else if (document.readyState === 'complete') {
+            // Page already loaded, hide immediately (but still respect min time)
             checkAndHideLoading();
         } else {
-            window.addEventListener('load', checkAndHideLoading);
+            // Interactive state, wait for load
+            window.addEventListener('load', function() {
+                checkAndHideLoading();
+            }, { once: true });
         }
         
         // Load quote on page load
