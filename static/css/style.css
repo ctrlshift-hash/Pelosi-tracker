@@ -6,81 +6,22 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
-    background: radial-gradient(ellipse at bottom, #1a2332 0%, #0a0a0f 100%);
     color: #fff;
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
 }
 
-/* Starfield Layer 1 - Small stars (Polymarket blue tint) */
-body::before {
-    content: '';
+/* Video Background */
+#background-video {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: 
-        radial-gradient(1px 1px at 20px 30px, rgba(78, 123, 245, 0.8), transparent),
-        radial-gradient(1px 1px at 40px 70px, rgba(255, 255, 255, 0.6), transparent),
-        radial-gradient(1px 1px at 50px 160px, rgba(78, 123, 245, 0.7), transparent),
-        radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.5), transparent),
-        radial-gradient(1px 1px at 130px 80px, rgba(78, 123, 245, 0.8), transparent),
-        radial-gradient(1px 1px at 160px 120px, rgba(255, 255, 255, 0.6), transparent),
-        radial-gradient(1px 1px at 200px 180px, rgba(78, 123, 245, 0.7), transparent),
-        radial-gradient(1px 1px at 240px 60px, rgba(255, 255, 255, 0.5), transparent),
-        radial-gradient(1px 1px at 280px 140px, rgba(78, 123, 245, 0.8), transparent),
-        radial-gradient(1px 1px at 320px 100px, rgba(255, 255, 255, 0.6), transparent);
-    background-size: 350px 250px;
-    background-position: 0 0;
-    animation: stars1 50s linear infinite;
+    object-fit: cover;
+    z-index: -1;
     pointer-events: none;
-    z-index: 0;
-    opacity: 0.7;
-}
-
-/* Starfield Layer 2 - Medium stars (Polymarket blue) */
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(2px 2px at 30px 50px, rgba(78, 123, 245, 0.9), transparent),
-        radial-gradient(1px 1px at 80px 90px, rgba(78, 123, 245, 0.7), transparent),
-        radial-gradient(2px 2px at 120px 30px, rgba(78, 123, 245, 0.9), transparent),
-        radial-gradient(1px 1px at 170px 110px, rgba(78, 123, 245, 0.7), transparent),
-        radial-gradient(2px 2px at 220px 70px, rgba(78, 123, 245, 0.9), transparent),
-        radial-gradient(1px 1px at 270px 150px, rgba(78, 123, 245, 0.7), transparent),
-        radial-gradient(2px 2px at 310px 40px, rgba(78, 123, 245, 0.9), transparent),
-        radial-gradient(1px 1px at 60px 130px, rgba(78, 123, 245, 0.7), transparent);
-    background-size: 400px 300px;
-    background-position: 0 0;
-    animation: stars2 80s linear infinite;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.8;
-}
-
-@keyframes stars1 {
-    from {
-        background-position: 0 0;
-    }
-    to {
-        background-position: -350px -250px;
-    }
-}
-
-@keyframes stars2 {
-    from {
-        background-position: 0 0;
-    }
-    to {
-        background-position: -400px -300px;
-    }
 }
 
 /* Smooth scroll */
@@ -593,44 +534,6 @@ html {
     }
 }
 
-/* Starfield Layer 3 - Large glowing stars (Polymarket blue with glow) */
-.container::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(circle 4px at 100px 80px, rgba(78, 123, 245, 1), rgba(78, 123, 245, 0.3) 50%, transparent),
-        radial-gradient(circle 3px at 250px 150px, rgba(78, 123, 245, 1), rgba(78, 123, 245, 0.3) 50%, transparent),
-        radial-gradient(circle 4px at 180px 40px, rgba(255, 255, 255, 0.9), rgba(78, 123, 245, 0.2) 50%, transparent),
-        radial-gradient(circle 3px at 320px 120px, rgba(78, 123, 245, 1), rgba(78, 123, 245, 0.3) 50%, transparent);
-    background-size: 500px 400px;
-    background-position: 0 0;
-    animation: stars3 100s linear infinite, twinkle 3s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 0;
-    filter: blur(0.3px);
-}
-
-@keyframes stars3 {
-    from {
-        background-position: 0 0;
-    }
-    to {
-        background-position: -500px -400px;
-    }
-}
-
-@keyframes twinkle {
-    0%, 100% {
-        opacity: 0.7;
-    }
-    50% {
-        opacity: 1;
-    }
-}
 
 .container {
     max-width: 1200px;
