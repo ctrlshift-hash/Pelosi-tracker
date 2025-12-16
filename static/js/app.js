@@ -16,6 +16,35 @@ async function fetchPortfolioData() {
 function updateUI(data) {
     console.log('Updating UI with data:', data);
     
+    // Update profile dashboard stats if section exists
+    if (data.performance) {
+        const profileTotalValue = document.getElementById('profile-total-value');
+        if (profileTotalValue && data.performance.total_invested) {
+            const invested = data.performance.total_invested;
+            profileTotalValue.textContent = `$${(invested / 1000000).toFixed(2)}M`;
+        }
+        
+        const profilePerformance = document.getElementById('profile-performance');
+        if (profilePerformance && data.performance.performance_percent !== undefined) {
+            const perf = data.performance.performance_percent;
+            profilePerformance.textContent = `${perf >= 0 ? '+' : ''}${perf.toFixed(1)}%`;
+            profilePerformance.classList.remove('positive', 'negative');
+            profilePerformance.classList.add(perf >= 0 ? 'positive' : 'negative');
+        }
+    }
+    
+    if (data.stats) {
+        const profileHoldings = document.getElementById('profile-holdings');
+        if (profileHoldings && data.stats.holdings_count !== undefined) {
+            profileHoldings.textContent = data.stats.holdings_count;
+        }
+        
+        const profileTrades = document.getElementById('profile-trades');
+        if (profileTrades && data.stats.trades_count !== undefined) {
+            profileTrades.textContent = data.stats.trades_count;
+        }
+    }
+    
     // Update hero stats (new design)
     const copiersEl = document.getElementById('copiers-stat');
     if (copiersEl && data.stats && data.stats.copiers) {
