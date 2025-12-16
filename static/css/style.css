@@ -3423,6 +3423,142 @@ body.light-mode .profile-card {
     }
 }
 
+/* Locked Profile Styles */
+body.profile-locked {
+    position: relative;
+}
+
+.locked-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.locked-content {
+    text-align: center;
+    color: #fff;
+    padding: 2rem;
+    max-width: 500px;
+}
+
+.locked-content i {
+    margin-bottom: 1.5rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.locked-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fbbf24;
+}
+
+.locked-content p {
+    font-size: 1.1rem;
+    color: #aaa;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.btn-back-to-profiles {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 12px 24px;
+    background: rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.5);
+    border-radius: 8px;
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-back-to-profiles:hover {
+    background: rgba(59, 130, 246, 0.3);
+    border-color: rgba(59, 130, 246, 0.8);
+    transform: translateY(-2px);
+}
+
+.locked-content-section {
+    opacity: 0.3;
+    filter: blur(2px);
+    pointer-events: none;
+    user-select: none;
+}
+
+.profile-locked .profile-card,
+.profile-locked .info-card,
+.profile-locked .portfolio-overview-card,
+.profile-locked .portfolio-performance-card,
+.profile-locked .holdings-card,
+.profile-locked .trades-card {
+    opacity: 0.25;
+    filter: blur(3px);
+    pointer-events: none;
+}
+
+.locked-stat,
+.locked-text {
+    color: #666 !important;
+    filter: blur(2px);
+    user-select: none;
+}
+
+.locked-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(100, 100, 100, 0.3), rgba(150, 150, 150, 0.2));
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.locked-chart {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(20, 20, 40, 0.3);
+    border-radius: 8px;
+    opacity: 0.3;
+}
+
+.locked-chart-placeholder {
+    color: #666;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 /* Loading Screen */
 .loading-screen {
     position: fixed;
