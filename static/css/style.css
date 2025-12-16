@@ -3361,6 +3361,48 @@ body.light-mode .profile-card {
     color: #aaa;
 }
 
+.badge-red {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #ef4444;
+}
+
+.badge-coming-soon {
+    background: rgba(251, 191, 36, 0.15);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    color: #fbbf24;
+}
+
+.profile-card-coming-soon {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.profile-card-coming-soon:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.profile-card-coming-soon .profile-card-image {
+    position: relative;
+    background: rgba(20, 20, 40, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.coming-soon-overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fbbf24;
+    border-radius: 50%;
+}
+
 @media (max-width: 768px) {
     .profiles-dashboard-title {
         font-size: 2rem;
