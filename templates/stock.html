@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title">{{ ticker }} - Stock Details | Pelosi Tracker</title>
+    <link rel="icon" type="image/png" href="https://static.wixstatic.com/media/e2da02_96dad94088ca473ebd2ca8c6f4a0cef7~mv2.png">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <img src="https://static.wixstatic.com/media/e2da02_96dad94088ca473ebd2ca8c6f4a0cef7~mv2.png" alt="Nancy Pelosi" class="loading-image">
+            <div class="loading-spinner-large"></div>
+            <p class="loading-text">Loading Pelosi Tracker...</p>
+        </div>
+    </div>
+    
     <!-- Background Video -->
     <video id="background-video" autoplay muted loop playsinline preload="auto">
         <source src="https://pub-de5cfab5b69047b7ba92c036589e9045.r2.dev/Galaxy%20Free%20Background%20Video%2C%20Motion%20Graphics%2C%20No%20Copyright%20Background%20%20All%20Background%20Video%20-%20All%20Background%20Videos%20(1080p%2C%20h264%2C%20youtube).mp4" type="video/mp4">

@@ -578,6 +578,19 @@ document.addEventListener('DOMContentLoaded', function() {
     loadNewQuote();
     loadSP500Comparison();
     loadTradePredictions();
+    
+    // Hide loading screen when page is loaded
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+                loadingScreen.classList.add('hidden');
+                setTimeout(function() {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }
+        }, 500);
+    });
 
     // Time range buttons - these are the 1M, 3M, 6M, 1Y, All buttons
     const timeBtns = document.querySelectorAll('.time-btn');

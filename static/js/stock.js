@@ -275,5 +275,18 @@ document.addEventListener('DOMContentLoaded', function() {
             fetchStockData();
         });
     });
+    
+    // Hide loading screen when page is loaded
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+                loadingScreen.classList.add('hidden');
+                setTimeout(function() {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }
+        }, 500);
+    });
 });
 
